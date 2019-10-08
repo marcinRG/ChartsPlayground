@@ -1,0 +1,12 @@
+@import './variables';
+@import './utils/fonts';
+@import './mixins';
+
+@mixin font-awesome-font {
+  font-family: 'Font Awesome', sans;
+}
+
+@mixin font-open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+

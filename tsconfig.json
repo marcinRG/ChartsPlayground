@@ -7,10 +7,11 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "jsx": "react",
-    "target": "es5",
-    "lib": ["es5", "es6", "dom", "es2015.promise"]
-
+    "lib": ["es5", "es6", "dom", "es2015.promise"],
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "target": "es6",
+    "jsx": "react"
   },
   "include": [
     "./src/**/*",
