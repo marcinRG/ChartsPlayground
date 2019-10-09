@@ -1,16 +1,20 @@
 @import './scss/variables';
+@import './scss/utils/fonts';
+@import './scss/utils/material-shadows';
 @import './scss/mixins';
-@import './scss/common';
 
-@mixin roboto-font {
-  font-family: 'Roboto', sans-serif;
+//@include custom-font-mixin('Open Sans', 'OpenSans-Regular', 400, normal, $path-open-sans);
+//@include custom-font-mixin('Open Sans', 'OpenSans-SemiBold', 600, normal, $path-open-sans);
+
+@mixin font-open-sans {
+  font-family: 'Open Sans', sans-serif;
 }
+
 
 *,
 html,
 body {
   @include set-to-zero;
   @include font-open-sans;
-  @include roboto-font;
   box-sizing: border-box;
 }

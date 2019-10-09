@@ -1,3 +1,5 @@
+import './Table.component.scss';
+
 import * as React from 'react';
 import {Component} from 'react';
 import {CellComponent} from './Cell.component';
@@ -22,9 +24,17 @@ export class TableComponent extends Component<{}, IState> {
             title: 'Table title',
             values: [
                 [1, 2],
-                [1, 4, 5, 7],
-                [1, 5, 6, 8, 11],
-                [1, 2, 3, 4, 5, 6, 7, 8, 9]],
+                [2, 25],
+                [3, 58],
+                [4, 98],
+                [5, 73],
+                [6, 58],
+                [7, 11],
+                [8, 82],
+                [9, 22],
+                [10, 72],
+                [11, 98],
+                [12, 45]],
             selectedRow: 0,
             selectedColumn: 0
         };
@@ -103,7 +113,7 @@ export class TableComponent extends Component<{}, IState> {
 
     private createTable(): any {
         return (
-            <table>
+            <table className="data-table">
                 <thead>
                 <tr>
                     {this.createHeaders('C')}
@@ -115,9 +125,13 @@ export class TableComponent extends Component<{}, IState> {
     }
 
     render(): any {
-        return (<div>
-            <p>{this.state.title}</p>
-            {this.createTable()}
+        return (<div className="data-table-component">
+            <label>Dataset title:</label>
+            <input type="text" className="table-title"></input>
+            <label>Dataset:</label>
+            <div className="data-table-wrapper">
+                {this.createTable()}
+            </div>
             <button onClick={this.addRow}>Add row</button>
             <button onClick={this.addColumn}>Add column</button>
         </div>);

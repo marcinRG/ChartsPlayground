@@ -1,0 +1,13 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.table-chart-component {
+  overflow: hidden;
+  width: 1002px;
+  border: 1px $background-black dashed;
+  margin: 0 auto;
+
+  &::after {
+    clear: both;
+  }
+}

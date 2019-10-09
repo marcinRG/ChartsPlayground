@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './TableHeader.component.scss';
 
 interface ITableHeaderProps {
     value?: any;
@@ -10,6 +11,6 @@ export function TableHeaderComponent(props: ITableHeaderProps) {
         props.action();
     };
     return (
-        <td onClick={func}>{props.value}</td>
+        <th className="table-header-cell" onClick={func}>{props.value}</th>
     );
 }

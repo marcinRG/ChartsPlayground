@@ -1,0 +1,54 @@
+@import './../../scss/variables';
+@import './../../scss/mixins';
+
+.data-table-component {
+  width: 400px;
+  height: 500px;
+  padding: .5em;
+  background-color: $white;
+  border-right: 1px $background-black dashed;
+  float: left;
+
+  label {
+    font-size: .75em;
+    margin-bottom: .25em;
+    font-weight: bold;
+  }
+
+  .data-table-wrapper {
+    width: 100%;
+    height: 350px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px $background-black dashed;
+    margin-bottom: .5em;
+    padding: .25em;
+  }
+
+  .data-table {
+    border-collapse: collapse;
+  }
+
+  .table-title {
+    font-size: 1.2em;
+    width: 100%;
+    outline: none;
+    margin-bottom: .5em;
+    padding: .25em;
+    border: 1px $background-black dashed;
+    &:focus {
+      background-color: $background-whitesmoke;
+    }
+  }
+
+  button {
+    margin-top: 1em;
+    border-radius: 3px;
+    padding: .5em 3em;
+    margin-right: .25em;
+    font-weight: bold;
+    background-color: $background-red;
+    color: $white;
+  }
+
+}

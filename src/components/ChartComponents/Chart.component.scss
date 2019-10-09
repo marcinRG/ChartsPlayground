@@ -1,0 +1,18 @@
+@import './../../scss/variables';
+@import './../../scss/mixins';
+
+.chart-component {
+  width: 600px;
+  height: 500px;
+  padding: .5em;
+  background-color: $background-whitesmoke;
+  float: right;
+  text-align: center;
+
+  .chart-title {
+    width: 100%;
+    font-size: .75em;
+    font-weight: 700;
+  }
+
+}

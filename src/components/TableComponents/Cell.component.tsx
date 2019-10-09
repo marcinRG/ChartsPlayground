@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Cell.component.scss';
 
 interface ICellProps {
     value?: any;
@@ -12,7 +13,7 @@ export function CellComponent(props: ICellProps) {
         props.action(e.target.value, props.row, props.column);
     };
     return (
-        <td>
-            <input type="text" value={props.value} onChange={func}/>
+        <td className="table-cell">
+            <input className="table-input" type="text" value={props.value} onChange={func}/>
         </td>);
 }

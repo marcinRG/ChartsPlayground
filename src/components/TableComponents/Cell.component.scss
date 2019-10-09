@@ -1,0 +1,29 @@
+@import './../../scss/variables';
+@import './../../scss/mixins';
+
+.table-cell {
+  @include set-to-zero;
+  height: 2em;
+  border: 1px solid black;
+  min-width: 4em;
+
+  &:focus {
+    background-color: magenta;
+  }
+
+  .table-input {
+    @include set-to-zero;
+    @include block-border-box;
+    padding: .25em;
+    outline: none;
+    width: 100%;
+    height: 100%;
+
+    &:focus {
+      background-color: $background-whitesmoke;
+      font-weight: 700;
+    }
+
+  }
+
+}
