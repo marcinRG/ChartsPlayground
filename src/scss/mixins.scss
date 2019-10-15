@@ -18,3 +18,23 @@
   animation-fill-mode: both;
   animation-iteration-count: $count;
 }
+
+@mixin font-lemmon-milk {
+  font-family: 'Lemmon Milk', sans-serif;
+}
+
+@mixin font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+@mixin font-peace-sans {
+  font-family: 'Peace Sans', sans-serif;
+}
+
+@mixin font-pump-demi-bold {
+  font-family: 'Pump Demi Bold', sans-serif;
+}
+
+@mixin font-open-sans {
+  font-family: 'Open Sans', sans-serif;
+}

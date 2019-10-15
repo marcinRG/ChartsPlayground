@@ -3,12 +3,10 @@
 @import './scss/utils/material-shadows';
 @import './scss/mixins';
 
-//@include custom-font-mixin('Open Sans', 'OpenSans-Regular', 400, normal, $path-open-sans);
-//@include custom-font-mixin('Open Sans', 'OpenSans-SemiBold', 600, normal, $path-open-sans);
 
-@mixin font-open-sans {
-  font-family: 'Open Sans', sans-serif;
-}
+@include custom-font-mixin-simplified('Lemmon Milk', 'lemonmilkbold', $path-lemmon-milk);
+@include custom-font-mixin-simplified('Peace Sans', 'peace_sans_webfont', $path-peace-sans);
+@include custom-font-mixin-simplified('Pump Demi Bold', 'pumpdemiboldletplain', $path-pump-demi-bold);
 
 
 *,
@@ -17,4 +15,116 @@ body {
   @include set-to-zero;
   @include font-open-sans;
   box-sizing: border-box;
+}
+
+.app {
+  max-width: 2500px;
+  margin: 0 auto;
+}
+
+/////
+
+.section-title {
+  @include font-peace-sans;
+  color: $text-color;
+  font-size: 3em;
+  margin-bottom: 1em;
+}
+
+.section-text {
+  color: $text-color;
+  text-align: justify;
+  width: 70%;
+}
+
+.description-section {
+  @include block-border-box;
+  position: relative;
+  overflow: hidden;
+  height: 550px;
+  padding: 5em;
+
+  &::after {
+    clear: both;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    transform: rotateZ(45deg);
+    top: -900px;
+    left: -200px;
+    z-index: -1;
+    display: block;
+    width: 2000px;
+    height: 1000px;
+    background-color: $background-black;
+  }
+
+  .text-wrapper {
+    float: left;
+    width: 50%;
+    z-index: 2;
+  }
+
+  .section-img {
+    float: left;
+    z-index: 2;
+  }
+
+}
+
+.charts-section {
+  padding: 5em 12em;
+  background-color: $background-whitesmoke;
+
+  .charts-title {
+    text-align: center;
+  }
+
+  .charts-display {
+    @include block-border-box;
+    overflow: hidden;
+
+    &::after {
+      clear: both;
+    }
+
+    .chart-title {
+
+      @include font-peace-sans;
+      display: block;
+      color: $text-color-lighter;
+      font-size: 1.5em;
+      letter-spacing: 2px;
+      font-weight: normal;
+      height: 75px;
+
+      &:before {
+        display: inline-block;
+        height: 75px;
+        width: 75px;
+        margin-right: 12px;
+        content: '';
+        background-image: url('images/icon-chart.png');
+        background-repeat: no-repeat;
+        vertical-align: middle;
+      }
+    }
+
+    .chart-text {
+      @include font-open-sans;
+      color: $text-color;
+      width: 72%;
+      margin: 1em auto;
+    }
+  }
+
+
+  .chart-description {
+    width: 33%;
+    padding: 3em 0;
+    float: left;
+  }
+
 }

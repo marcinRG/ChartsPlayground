@@ -3,10 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900|Open+Sans:400,400i,700,700i,800,800i&display=swap"
+          rel="stylesheet">
     <title>Charts Playground</title>
 </head>
 <body>
-    <main id="App" class="app"></main>
+<main id="App" class="app"></main>
+<div class="app">
+
+    <header class="header-component">
+        <svg class="img-background" viewBox="0 0 2622 926" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <clipPath id="svgTextPath">
+                    <text class="svg-text txt-1" textLength="520px" lengthAdjust="spacing">
+                        Think
+                    </text>
+                    <text class="svg-text txt-2" x="600" y="420" textLength="750px" lengthAdjust="spacing" font-size="140px">
+                        outside
+                    </text>
+                    <text class="svg-text txt-3" x="660" y="500" textLength="630px" lengthAdjust="spacing" font-size="80px">of
+                        the box
+                    </text>
+                </clipPath>
+                <filter id="txt-shadow">
+                    <feMorphology operator="dilate" radius="5" in="SourceAlpha" result="DILATE"/>
+                    <feGaussianBlur in="DILATED" result="BLURRED" stdDeviation="8"/>
+                    <feComposite in2="SourceAlpha" in="BLURRED" operator="out" result="SHADOW"></feComposite>
+                    <feFlood flood-opacity=".9" flood-color="black" result="COLOR"></feFlood>
+                    <feComposite in="COLOR" in2="SHADOW" operator="in" result="SHADOW_COLORED"></feComposite>
+                </filter>
+                <filter id="red-overlay">
+                    <feColorMatrix
+                            type="matrix"
+                            values="
+                             1   0   0   .1   0
+                             0   .2   0   0   0
+                             0   0   .2   0  0
+                             0   0   0   1   0 "/>
+                </filter>
+            </defs>
+            <image xlink:href="images/header-bckg.jpg" x="0" y="0" width="100%" height="100%"
+                   filter="url(#red-overlay)"/>
+            <image xlink:href="images/header-bckg.jpg" x="0" y="0" width="100%" height="100%"
+                   clip-path="url(#svgTextPath)"/>
+            <g>
+                <text class="svg-text" x="715" y="300" textLength="520px" lengthAdjust="spacing" font-size="120px"
+                      filter="url(#txt-shadow)">Think
+                </text>
+                <text class="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing" font-size="140px"
+                      filter="url(#txt-shadow)"> outside
+                </text>
+                <text class="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing" font-size="80px"
+                      filter="url(#txt-shadow)">of the box
+                </text>
+            </g>
+        </svg>
+        <div class="header-content">
+            <nav class="app-navbar">
+                <h1 class="app-title">Charts playground</h1>
+                <ul class="app-menu">
+                    <li class="menu-item">home</li>
+                    <li class="menu-item">charts</li>
+                    <li class="menu-item">about</li>
+                    <li class="menu-item search"><span>search</span></li>
+                </ul>
+            </nav>
+            <img class="title-image" src="images/woman_title.png" alt="smiling blond woman"/>
+        </div>
+    </header>
+
+
+
+    <section class="description-section">
+        <div class="text-wrapper">
+            <h2 class="section-title">What's this?</h2>
+            <p class="section-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, aut commodi cum
+                cupiditate dolor
+                eius error eum expedita facere illum mollitia nemo odit perspiciatis porro, quos repudiandae
+                velit veritatis vero?
+            </p>
+        </div>
+        <img class="section-img" src="images/computer.png" alt="someone browsing interent on tablet">
+    </section>
+    <section class="charts-section">
+        <h2 class="section-title charts-title">Charts</h2>
+        <div class="charts-display">
+            <div class="chart-description">
+                <h4 class="chart-title">title</h4>
+                <p class="chart-text">lorem ipsum costam costam facere illum mollitia nemo odit
+                    perspiciatis porro, quos repudiandae</p>
+            </div>
+            <div class="chart-description">
+                <h4 class="chart-title">title</h4>
+                <p class="chart-text">lorem ipsum costam costam facere illum mollitia nemo
+                    odit perspiciatis porro, quos repudiandae</p>
+            </div>
+            <div class="chart-description">
+                <h4 class="chart-title">title</h4>
+                <p class="chart-text">lorem ipsum costam costam facere illum mollitia
+                    nemo odit perspiciatis porro, quos repudiandae</p>
+            </div>
+            <div class="chart-description">
+                <h4 class="chart-title">title</h4>
+                <p class="chart-text">lorem ipsum costam costam facere illum mollitia
+                    nemo odit perspiciatis porro, quos repudiandae</p>
+            </div>
+            <div class="chart-description">
+                <h4 class="chart-title">title</h4>
+                <p class="chart-text">lorem ipsum costam costam facere
+                    illum mollitia nemo odit perspiciatis porro, quos repudiandae</p>
+            </div>
+
+            <div class="chart-description">
+                <h4 class="chart-title">title</h4>
+                <p class="chart-text">lorem ipsum costam costam facere
+                    illum mollitia nemo odit perspiciatis porro, quos repudiandae</p>
+            </div>
+        </div>
+    </section>
+    <section class="section-2"></section>
+    <section class="section-2"></section>
+    <section class="section-2"></section>
+    <section class="section-2"></section>
+</div>
 </body>
 </html>

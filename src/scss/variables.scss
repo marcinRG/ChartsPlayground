@@ -1,5 +1,7 @@
 $path-fonts: 'fonts/';
-$path-open-sans: '#{$path-fonts}OpenSans/';
+$path-pump-demi-bold: '#{$path-fonts}PumpDemiBold/';
+$path-peace-sans: '#{$path-fonts}PeaceSans/';
+$path-lemmon-milk: '#{$path-fonts}LemmonMilk/';
 
 
 $white: #fff;
@@ -7,6 +9,7 @@ $background-whitesmoke: #f5f5f5;
 $background-black: #171717;
 $background-red: #bb2d39;
 $text-color: #494949;
+$text-color-lighter: #747474;
 
 $media-br-1: 768px;
 $media-br-2: 992px;

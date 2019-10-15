@@ -34,7 +34,10 @@ module.exports = {
             {
                 test: /\.html$/,
                 exclude: /node_modules/,
-                loader: 'html-loader'
+                loader: 'html-loader',
+                options: {
+                    attrs: ['img:src','link:href','image:xlink:href']
+                }
             }
         ]
     },
