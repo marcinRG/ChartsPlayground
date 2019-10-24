@@ -1,0 +1,71 @@
+@import './../../../scss/variables';
+@import './../../../scss/mixins';
+
+.charts-section {
+  padding: 5em 12em;
+  position: relative;
+  z-index: 1;
+  background-color: $background-whitesmoke;
+
+  &::before {
+    position: absolute;
+    z-index: 2;
+    content: '';
+    width: 200px;
+    height: 200px;
+    background-color:  $background-red;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%,-50%) rotateZ(45deg);
+  }
+
+  .charts-title {
+    text-align: center;
+  }
+
+  .charts-display {
+    @include block-border-box;
+    overflow: hidden;
+
+    &::after {
+      clear: both;
+    }
+
+    .chart-title {
+
+      @include font-peace-sans;
+      display: block;
+      color: $text-color-lighter;
+      font-size: 1.5em;
+      letter-spacing: 2px;
+      font-weight: normal;
+      height: 75px;
+      margin-bottom: 1.2em;
+
+      &::before {
+        display: inline-block;
+        height: 75px;
+        width: 75px;
+        margin-right: 12px;
+        content: '';
+        background-image: url('../../../images/icon-chart.png');
+        background-repeat: no-repeat;
+        vertical-align: middle;
+      }
+    }
+
+    .chart-text {
+      @include font-open-sans;
+      color: $text-color;
+      width: 80%;
+      margin: 1em auto;
+    }
+  }
+
+  .chart-description {
+    width: 33%;
+    padding: 3em 0;
+    float: left;
+  }
+
+}

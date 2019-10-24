@@ -1,0 +1,39 @@
+@import './../../../scss/variables';
+@import './../../../scss/mixins';
+
+.description-section {
+  @include block-border-box;
+  position: relative;
+  z-index: 0;
+  height: 550px;
+  padding: 5em;
+
+  &::after {
+    clear: both;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    transform: rotateZ(45deg);
+    top: -900px;
+    left: -200px;
+    z-index: -1;
+    display: block;
+    width: 2000px;
+    height: 1000px;
+    background-color: $background-black;
+  }
+
+  .text-wrapper {
+    float: left;
+    width: 50%;
+    z-index: 1;
+  }
+
+  .section-img {
+    float: left;
+    z-index: 1;
+  }
+
+}

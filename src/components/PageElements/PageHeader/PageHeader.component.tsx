@@ -13,17 +13,11 @@ export function PageHeaderComponent(props: any) {
                     <defs>
                         <clipPath id="svgTextPath">
                             <text className="svg-text" x="715" y="300" textLength="520px" lengthAdjust="spacing"
-                                  fontSize="120px">
-                                Think
-                            </text>
+                                  fontSize="120px">Think</text>
                             <text className="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing"
-                                  fontSize="140px">
-                                outside
-                            </text>
+                                  fontSize="140px">outside</text>
                             <text className="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing"
-                                  fontSize="80px">of
-                                the box
-                            </text>
+                                  fontSize="80px">of the box</text>
                         </clipPath>
                         <filter id="txt-shadow">
                             <feMorphology operator="dilate" radius="5" in="SourceAlpha" result="DILATE"/>
@@ -48,17 +42,12 @@ export function PageHeaderComponent(props: any) {
                            clipPath="url(#svgTextPath)"/>
                     <g>
                         <text className="svg-text" x="715" y="300" textLength="520px" lengthAdjust="spacing"
-                              fontSize="120px"
-                              filter="url(#txt-shadow)">Think
-                        </text>
+                              fontSize="120px" filter="url(#txt-shadow)">Think</text>
                         <text className="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing"
-                              fontSize="140px"
-                              filter="url(#txt-shadow)"> outside
-                        </text>
+                              fontSize="140px" filter="url(#txt-shadow)">outside</text>
                         <text className="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing"
                               fontSize="80px"
-                              filter="url(#txt-shadow)">of the box
-                        </text>
+                              filter="url(#txt-shadow)">of the box</text>
                     </g>
                 </svg>
                 <div className="header-content">
