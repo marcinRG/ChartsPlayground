@@ -1,0 +1,9 @@
+@import './../../../scss/variables';
+@import './../../../scss/mixins';
+
+.selected-charts {
+  background-color: $background-whitesmoke;
+  position: relative;
+  z-index: 1;
+  height: 700px;
+}

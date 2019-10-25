@@ -1,10 +1,10 @@
 import * as React from 'react';
-import './ChartsSection.component.scss';
+import './ChartsList.component.scss';
 
-export function ChartsSectionComponent(props: any) {
+export function ChartsListComponent(props: any) {
     return (
-        <section className="charts-section">
-            <h2 className="section-title charts-title">Charts</h2>
+        <section className="types-of-charts-list">
+            <h2 className="section-title charts-title">Types of charts</h2>
             <div className="charts-display">
                 <div className="chart-description">
                     <h4 className="chart-title">title</h4>

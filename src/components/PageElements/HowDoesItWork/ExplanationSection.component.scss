@@ -1,0 +1,70 @@
+@import './../../../scss/variables';
+@import './../../../scss/mixins';
+
+.how-does-it-work-section {
+  background-color: $white;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 5em 0 5em 12em;
+  height: 700px;
+
+  .selected-wrapper {
+    @include block-border-box;
+    @include set-to-zero;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      clear: both;
+    }
+
+    .selected-description {
+      float: left;
+      width: 25%;
+    }
+
+  }
+
+  .selected-text {
+    color: $text-color;
+    text-align: justify;
+    margin-bottom: 2.5em;
+    width: 90%;
+  }
+
+  .selected-slider {
+    float: right;
+    height: 600px;
+    width: 75%;
+  }
+
+
+  &::before {
+    width: 1000px;
+    height: 1000px;
+    position: absolute;
+    display: block;
+    background-color: $background-red;
+    content: '';
+    z-index: 3;
+    right: 0;
+    transform: rotateZ(45deg) translateX(25%) translateY(-50%);
+  }
+
+  &::after {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    display: block;
+    background-color: $background-black;
+    content: '';
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    transform: translate(-50%, 50%) rotateZ(45deg); // translateY(-50%);
+  }
+}

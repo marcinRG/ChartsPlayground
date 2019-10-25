@@ -1,0 +1,38 @@
+@import './../../../scss/variables';
+@import './../../../scss/mixins';
+
+.in-the-spotlight {
+  background-color: $white;
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  padding: 5em 0 5em 12em;
+  height: 700px;
+
+  &::before {
+    width: 2400px;
+    height: 2400px;
+    position: absolute;
+    display: block;
+    background-color: $background-red;
+    content: '';
+    z-index: 3;
+    left: 0;
+    transform: rotateZ(45deg) translateX(-100%) translateY(44%);
+  }
+
+  &::after {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    display: block;
+    background-image: url('../../../images/back-triangle.svg');
+    background-repeat: no-repeat;
+    content: '';
+    z-index: -1;
+    right: 0;
+    top: 0;
+  }
+
+}
