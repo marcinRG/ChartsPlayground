@@ -3,10 +3,10 @@
 
 .data-table-component {
   width: 400px;
-  height: 500px;
+  height: 550px;
   padding: .5em;
   background-color: $white;
-  border-right: 1px $background-black dashed;
+  border-right: 1px $background-black solid;
   float: left;
 
   label {
@@ -20,7 +20,7 @@
     height: 350px;
     overflow-x: auto;
     overflow-y: auto;
-    border: 1px $background-black dashed;
+    border: 1px $background-black solid;
     margin-bottom: .5em;
     padding: .25em;
   }
@@ -35,7 +35,7 @@
     outline: none;
     margin-bottom: .5em;
     padding: .25em;
-    border: 1px $background-black dashed;
+    border: 1px $background-black solid;
 
     &:focus {
       background-color: $background-whitesmoke;

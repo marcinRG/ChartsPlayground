@@ -4,7 +4,7 @@
 .page-title {
   width: 100%;
   height: 100vh;
-  background-color: $white;
+  background-color: $background-red;
   position: relative;
   z-index: 2;
 
@@ -22,6 +22,38 @@
     @include font-lemmon-milk;
     font-weight: bold;
     text-transform: uppercase;
+
+    &.first {
+      font-size: 120px;
+      letter-spacing: 33px;
+      transform: translateY(300px) translateX(715px);
+    }
+
+    &.second {
+      font-size: 140px;
+      letter-spacing: 17px;
+      transform: translateY(420px) translateX(600px);
+
+      @media screen {
+        @media (min-width: $media-br-1) {
+          font-size: 140px;
+          letter-spacing: 17px;
+          transform: translateY(420px) translateX(600px);
+        }
+      }
+
+    }
+
+    &.third {
+      font-size: 80px;
+      letter-spacing: 13px;
+      transform: translateY(500px) translateX(660px);
+    }
+
+    &.txt-shadow {
+      filter: url('#txt-shadow');
+    }
+
   }
 
   .svg-utils {
@@ -53,44 +85,11 @@
 
     .title-image {
       position: absolute;
+      display: none;
       width: auto;
       top: 10%;
       left: 44%;
       height: 90%;
-    }
-
-    .app-title {
-      @include font-peace-sans;
-      letter-spacing: 1px;
-      font-size: 2em;
-      font-weight: normal;
-      color: $white;
-      float: left;
-      padding-top: .5em;
-      height: 100%;
-    }
-
-    .menu-item {
-      @include font-lato;
-      //display: list-item;
-      display: inline-block;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: $white;
-      font-size: .85em;
-      margin: 1em;
-
-      &.search {
-
-        &::before {
-          display: inline-block;
-          font-size: 1.5em;
-          font-weight: 700;
-          margin-right: 3px;
-          content: '\002315';
-        }
-      }
-
     }
 
     .app-navbar {
@@ -105,12 +104,115 @@
     }
 
     .app-menu {
-      width: 70%;
+      box-sizing: border-box;
       display: block;
+      width: 100%;
       list-style-type: none;
-      height: 100%;
       float: right;
-      text-align: right;
+      transition-duration: 300ms;
+      transition-property: height;
+      transition-timing-function: ease-in;
+      overflow: hidden;
+      position: relative;
+      height: 0;
+
+      &.visible {
+        height: 280px;
+        @media screen {
+          @media (min-width: $media-br-1) {
+            height: inherit;
+          }
+        }
+      }
+
+      @media screen {
+        @media (min-width: $media-br-1) {
+          width: auto;
+          height: inherit;
+        }
+      }
+
+    }
+
+    .menu-item {
+      @include block-border-box;
+      @include font-lato;
+      display: list-item;
+      width: 100%;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $white;
+      font-size: .85em;
+      padding: 1em;
+      cursor: pointer;
+      text-shadow: rgba(7, 3, 3, .6) 2px 2px;
+
+      &.search {
+
+        &::before {
+          @include font-awesome;
+          display: inline-block;
+          font-size: 1em;
+          font-weight: 700;
+          margin-right: 3px;
+          content: $fa-var-search;
+        }
+      }
+
+      @media screen {
+        @media (min-width: $media-br-1) {
+          display: inline-block;
+          width: auto;
+          text-shadow: none;
+        }
+      }
+
+    }
+
+    .menu-button {
+      display: block;
+      cursor: pointer;
+      font-size: .85em;
+      background-color: transparent;
+      margin: 1em;
+      float: right;
+      width: 2em;
+      color: white;
+      outline: 0;
+
+      @media screen {
+        @media (min-width: $media-br-1) {
+          display: none;
+        }
+      }
+
+
+      &::before {
+        @include font-awesome;
+        display: inline-block;
+        content: $fa-var-navicon;
+      }
+    }
+
+    .app-title {
+      @include font-peace-sans;
+      letter-spacing: 1px;
+      font-size: .85em;
+      margin: 1em;
+      font-weight: normal;
+      color: $white;
+      float: left;
+      height: 100%;
+      width: 70%;
+
+      @media screen {
+        @media (min-width: $media-br-1) {
+          font-size: 2em;
+          margin: 0;
+          width: auto;
+        }
+      }
+
     }
   }
 }

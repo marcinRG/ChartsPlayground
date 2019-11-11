@@ -4,8 +4,8 @@
 .table-chart-component {
   overflow: hidden;
   width: 1002px;
-  border: 1px $background-black dashed;
-  margin: 0 auto;
+  border: 1px $background-black solid;
+  margin: 1em auto;
 
   &::after {
     clear: both;

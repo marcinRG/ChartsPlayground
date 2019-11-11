@@ -6,6 +6,7 @@
 @include custom-font-mixin-simplified('Lemmon Milk', 'lemonmilkbold', $path-lemmon-milk);
 @include custom-font-mixin-simplified('Peace Sans', 'peace_sans_webfont', $path-peace-sans);
 @include custom-font-mixin-simplified('Pump Demi Bold', 'pumpdemiboldletplain', $path-pump-demi-bold);
+@include custom-font-mixin('Font Awesome', 'fontawesome-webfont', 400, normal, $path-font-awesome-fonts);
 
 
 *,
