@@ -29,8 +29,8 @@ export class ChartComponent extends Component {
     }
 
     componentDidMount(): void {
-        console.log(this.svgRef.current);
         const svg = d3.select(this.svgRef.current);
+        console.log(svg);
         let yScale = d3.scaleLinear()
             .domain([0, d3.max(this.dataTable)])
             .range([this.chartProperties.size.yMin, this.chartProperties.size.yMax]);
@@ -46,7 +46,7 @@ export class ChartComponent extends Component {
         axisY.call(yAxis);
 
         let axisX = svg.append('g');
-        axisX.attr('transform', `translate(${this.chartProperties.margins.left} ${this.chartProperties.margins.right+this.chartProperties.size.yMin})`);
+        axisX.attr('transform', `translate(${this.chartProperties.margins.left} ${this.chartProperties.margins.right + this.chartProperties.size.yMin})`);
         let xAxis = d3.axisBottom(xScale);
         axisX.call(xAxis);
 
@@ -55,7 +55,7 @@ export class ChartComponent extends Component {
         chart.attr('transform', `translate(${this.chartProperties.margins.left} ${this.chartProperties.margins.right})`);
         chart.selectAll('rect').data(this.dataTable).enter().append('rect')
             .attr('height', (d) => {
-                return this.chartProperties.size.yMin-yScale(d);
+                return this.chartProperties.size.yMin - yScale(d);
             })
             .attr('width', '15').attr('fill', 'pink')
             .attr('x', (d, i) => {
