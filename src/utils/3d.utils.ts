@@ -114,3 +114,38 @@ export function appendLine(svgElement: any, scaleX: any, scaleY: any, chartPrope
         .attr('stroke', 'black')
 }
 
+export function appendArea(svgElement: any, scaleX: any, scaleY: any, chartProperties: IChartProperties, data: any) {
+    let chart = svgElement.append('g');
+    chart = translateElement(chart, chartProperties.margins.left, chartProperties.margins.top);
+    const areaGen = d3.area()
+        .x((d: any) => {
+            return scaleX(d.x);
+        })
+        .y0(() => {
+            return scaleY(0);
+        })
+        .y1((d: any) => {
+            return scaleY(d.y);
+        }).curve(d3.curveCardinal);
+
+    chart.append('path').attr('d', areaGen(data))
+        .attr('fill', 'pink')
+        .attr('stroke', 'transparent');
+}
+
+export function appendPie(svgElement: any, scaleValues: any, colorScale: any, chartProperties: IChartProperties, data: any) {
+    let chart = svgElement.append('g');
+    chart = translateElement(chart, chartProperties.margins.left, chartProperties.margins.top);
+
+
+    // const areaGen = d3.area()
+    //     .x((d: any) => {
+    //         return scaleValues(d.x);
+    //     })
+    //     .y1((d: any) => {
+    //         return colorScale(d.x);
+    //     }).curve(d3.curveCardinal);
+    // chart.append('path').attr('d', areaGen(data))
+    //     .attr('fill', 'pink')
+    //     .attr('stroke', 'transparent');
+}

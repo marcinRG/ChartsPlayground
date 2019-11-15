@@ -1,12 +1,13 @@
 import * as React from 'react';
 import * as d3 from 'd3';
 import {Component} from 'react';
-import './BarChart.component.scss';
 import {IChartProperties} from '../../../interfaces/IChartProperties';
 import {
-    appendBars,
+    appendArea, appendLine,
+    appendPoints,
     appendXAxis,
-    appendYAxis, appendYGrid,
+    appendXGrid, appendYAxis,
+    appendYGrid,
     getExtent,
     getScale,
     getXRange,
@@ -14,7 +15,7 @@ import {
 } from '../../../utils/3d.utils';
 
 
-export class BarChartComponent extends Component {
+export class AreaChartComponent extends Component {
     private svgRef: any;
     private data: any;
     private chartProperties: IChartProperties;
@@ -35,20 +36,22 @@ export class BarChartComponent extends Component {
     }
 
     componentDidMount(): void {
-        console.log(this.svgRef.current);
+
         const svg = d3.select(this.svgRef.current);
-        const xExtent = getExtent(this.data, 'x', true);
+        const sortedData = this.data.sort((a: any, b: any) => {
+            return a.x - b.x;
+        });
+        const xExtent = getExtent(this.data, 'x');
+        const yExtent = getExtent(this.data, 'y', true);
         const xRange = getXRange(this.chartProperties);
         const yRange = getYRange(this.chartProperties);
         const xScale = getScale(xRange, xExtent);
-        const yMax = d3.max(this.data, (d: any) => {
-            return +d.y;
-        });
-        const yScale = getScale(yRange, [0, yMax]);
+        const yScale = getScale(yRange, yExtent);
+        appendXGrid(svg, xScale, this.chartProperties);
         appendYGrid(svg, yScale, this.chartProperties);
         appendXAxis(svg, xScale, this.chartProperties);
         appendYAxis(svg, yScale, this.chartProperties);
-        appendBars(svg, xScale, yScale, this.chartProperties, this.data);
+        appendArea(svg, xScale, yScale, this.chartProperties, sortedData);
     }
 
     render() {
@@ -62,4 +65,3 @@ export class BarChartComponent extends Component {
             </div>);
     }
 }
-
