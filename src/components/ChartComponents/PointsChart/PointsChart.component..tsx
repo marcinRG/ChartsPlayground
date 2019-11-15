@@ -1,12 +1,10 @@
 import * as React from 'react';
 import * as d3 from 'd3';
 import {Component} from 'react';
-import './BarChart.component.scss';
 import {IChartProperties} from '../../../interfaces/IChartProperties';
 import {
-    appendBars,
-    appendXAxis,
-    appendXGrid,
+    appendPoints,
+    appendXAxis, appendXGrid,
     appendYAxis, appendYGrid,
     getExtent,
     getScale,
@@ -14,8 +12,7 @@ import {
     getYRange
 } from '../../../utils/3d.utils';
 
-
-export class BarChartComponent extends Component {
+export class PointsChartComponent extends Component {
     private svgRef: any;
     private data: any;
     private chartProperties: IChartProperties;
@@ -36,20 +33,19 @@ export class BarChartComponent extends Component {
     }
 
     componentDidMount(): void {
-        console.log(this.svgRef.current);
+
         const svg = d3.select(this.svgRef.current);
         const xExtent = getExtent(this.data, 'x', true);
+        const yExtent = getExtent(this.data, 'y', true);
         const xRange = getXRange(this.chartProperties);
         const yRange = getYRange(this.chartProperties);
         const xScale = getScale(xRange, xExtent);
-        const yMax = d3.max(this.data, (d: any) => {
-            return +d.y;
-        });
-        const yScale = getScale(yRange, [0, yMax]);
+        const yScale = getScale(yRange, yExtent);
+        appendXGrid(svg, xScale, this.chartProperties);
         appendYGrid(svg, yScale, this.chartProperties);
         appendXAxis(svg, xScale, this.chartProperties);
         appendYAxis(svg, yScale, this.chartProperties);
-        appendBars(svg, xScale, yScale, this.chartProperties, this.data);
+        appendPoints(svg, xScale, yScale, this.chartProperties, this.data);
     }
 
     render() {
@@ -63,4 +59,3 @@ export class BarChartComponent extends Component {
             </div>);
     }
 }
-

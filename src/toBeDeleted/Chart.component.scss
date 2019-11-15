@@ -1,0 +1,25 @@
+@import '../scss/variables';
+@import '../scss/mixins';
+
+.chart-component {
+  width: 600px;
+  height: 550px;
+  padding: .5em;
+  background-color: $background-whitesmoke;
+  float: right;
+  text-align: center;
+
+  .chart-title {
+    width: 100%;
+    display: block;
+    font-size: .75em;
+    font-weight: 700;
+    margin-bottom: .25em;
+  }
+
+  .chart-svg {
+    background-color: whitesmoke;
+    border: 1px solid black;
+  }
+
+}
