@@ -133,19 +133,18 @@ export function appendArea(svgElement: any, scaleX: any, scaleY: any, chartPrope
         .attr('stroke', 'transparent');
 }
 
-export function appendPie(svgElement: any, scaleValues: any, colorScale: any, chartProperties: IChartProperties, data: any) {
+export function appendPie(svgElement: any, colorScale: any, arc: any, chartProperties: IChartProperties, data: any) {
     let chart = svgElement.append('g');
-    chart = translateElement(chart, chartProperties.margins.left, chartProperties.margins.top);
-
-
-    // const areaGen = d3.area()
-    //     .x((d: any) => {
-    //         return scaleValues(d.x);
-    //     })
-    //     .y1((d: any) => {
-    //         return colorScale(d.x);
-    //     }).curve(d3.curveCardinal);
-    // chart.append('path').attr('d', areaGen(data))
-    //     .attr('fill', 'pink')
-    //     .attr('stroke', 'transparent');
+    chart = translateElement(chart, chartProperties.xMax / 2, chartProperties.yMax/2);
+    //pie slides
+    chart.selectAll().data(data).enter().append('path').attr('d', arc).attr('fill', (d: any) => {
+        return colorScale(d.data.y);
+    }).attr('stroke','white').attr('stroke-width','1');
+    //text
+    chart.selectAll().data(data).enter().append('text').text((d: any)=>{
+            return d.data.x})
+        .attr('transform', (d: any) => { return 'translate(' + arc.centroid(d) + ')';})
+        .style('text-anchor', 'middle')
+        .style('font-size', 10)
+        .style('font-weight','bold');
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as d3 from 'd3';
 import {Component} from 'react';
 import {IChartProperties} from '../../../interfaces/IChartProperties';
-import {getExtent} from '../../../utils/3d.utils';
+import {appendPie, getChartHeight, getExtent} from '../../../utils/3d.utils';
 
 export class PieChartComponent extends Component {
     private svgRef: any;
@@ -11,7 +11,10 @@ export class PieChartComponent extends Component {
 
     constructor(props: any) {
         super(props);
-        this.data = [{x: 3, y: 10}, {x: 2, y: 70},{x: 6, y: 75}, {x: 8, y: 100}, {x: 1, y: 47}, {x: 4, y: 55}, {x: 5, y: 20}, {x: 7, y: 82}];
+        this.data = [{x: 3, y: 10}, {x: 2, y: 70}, {x: 6, y: 75}, {x: 8, y: 100}, {x: 1, y: 47}, {x: 4, y: 55}, {
+            x: 5,
+            y: 20
+        }, {x: 7, y: 82}];
         this.chartProperties = {
             margins: {
                 left: 50,
@@ -25,31 +28,21 @@ export class PieChartComponent extends Component {
     }
 
     componentDidMount(): void {
-
-        const svg = d3.select(this.svgRef.current);
+        const sortedData = this.data.sort((a: any, b: any) => {
+            return a.x - b.x;
+        });
         const yExtent = getExtent(this.data, 'y');
-        // var color = d3.scaleLinear()
-        //      .domain(yExtent)
-        //      .interpolate(d3.interpolateHsl("red", "blue")(0.5))
-// Compute the position of each group on the pie:
-//         var pie = d3.pie()
-//             .value(function(d) {return d.value; })
-//         var data_ready = pie(d3.entries(data))
-        // const sortedData = this.data.sort((a: any, b: any) => {
-        //     return a.x - b.x;
-        // });
-        // const xExtent = getExtent(this.data, 'x');
-        // const yExtent = getExtent(this.data, 'y', true);
-        // const xRange = getXRange(this.chartProperties);
-        // const yRange = getYRange(this.chartProperties);
-        // const xScale = getScale(xRange, xExtent);
-        // const yScale = getScale(yRange, yExtent);
-        // appendXGrid(svg, xScale, this.chartProperties);
-        // appendYGrid(svg, yScale, this.chartProperties);
-        // appendXAxis(svg, xScale, this.chartProperties);
-        // appendYAxis(svg, yScale, this.chartProperties);
-        // appendArea(svg, xScale, yScale, this.chartProperties, sortedData);
-        //appendPie)svg)
+        const svg = d3.select(this.svgRef.current);
+        let color = d3.scaleLinear<string, number>().domain(yExtent)
+            .range(['pink', 'red']);
+        const pies = d3.pie().value((d: any) => {
+            return d.y;
+        })(sortedData);
+        const radius = getChartHeight(this.chartProperties) * 0.55 - this.chartProperties.margins.left;
+        const arc = d3.arc<any>()
+            .innerRadius(radius / 4)
+            .outerRadius(radius);
+        appendPie(svg,color,arc,this.chartProperties,pies);
     }
 
     render() {
