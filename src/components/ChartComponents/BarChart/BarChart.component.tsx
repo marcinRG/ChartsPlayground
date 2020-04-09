@@ -35,7 +35,7 @@ export class BarChartComponent extends Component {
     }
 
     componentDidMount(): void {
-        console.log(this.svgRef.current);
+        //console.log(this.svgRef.current);
         const svg = d3.select(this.svgRef.current);
         const xExtent = getExtent(this.data, 'x', true);
         const xRange = getXRange(this.chartProperties);
