@@ -2,19 +2,26 @@ import * as React from 'react';
 import {Component, ReactNode} from 'react';
 import {AppContext} from './app.context'
 
+
+interface IState {
+    title: string;
+    values: Array<Array<any>>;
+    selectedRow?: number;
+    selectedColumn?: number;
+}
+
 interface IChildren {
     children: any;
 }
 
-export class DataProvider extends Component<any> {
-    state: any;
+export class DataProvider extends Component<any, IState> {
+    public state: IState;
 
     constructor(props: any) {
         super(props);
         this.state = {
-            text: 'something',
-            data: [12, 34, 55, 67, 88, 105],
-            dataNumbers: [
+            title: 'Table title',
+            values: [
                 [1, 2],
                 [2, 25],
                 [3, 58],
@@ -27,50 +34,100 @@ export class DataProvider extends Component<any> {
                 [10, 72],
                 [11, 98],
                 [12, 45]],
-            barChartData: [
-                {x: 3, y: 10},
-                {x: 2, y: 70},
-                {x: 6, y: 75},
-                {x: 8, y: 100},
-                {x: 1, y: 47},
-                {x: 4, y: 55},
-                {x: 5, y: 20},
-                {x: 7, y: 82}],
-            pointsCharData: [
-                {x: 3, y: 10},
-                {x: 2, y: 70},
-                {x: 6, y: 75},
-                {x: 8, y: 100},
-                {x: 1, y: 47},
-                {x: 4, y: 55},
-                {x: 5, y: 20},
-                {x: 7, y: 82}],
+            selectedRow: 0,
+            selectedColumn: 0
         };
+
+        this.changeTableCellValue= this.changeTableCellValue.bind(this);
+        this.addColumnToTable= this.addColumnToTable.bind(this);
+        this.addRowToTable= this.addRowToTable.bind(this);
+        this.getTableSize= this.getTableSize.bind(this);
+        this.getWidestRow= this.getWidestRow.bind(this);
+    }
+
+    private changeTableCellValue(newValue: any, row: number, column: number): void {
+        let newValues: any = [...this.state.values];
+        newValues[row][column] = newValue;
+        this.setState({
+            values: newValues
+        });
+    }
+
+    private addColumnToTable() {
+        const widestRow = getWidestRowIndex(this.state.values);
+        let newValues: any = [...this.state.values];
+        newValues[widestRow].push('');
+        this.setState({
+            values: newValues
+        });
+    }
+
+    private addRowToTable() {
+        let newValues: any = [...this.state.values];
+        newValues.push([]);
+        this.setState({
+            values: newValues
+        });
+    }
+
+    private getTableSize() {
+        return getTableSize(this.state.values);
+    }
+
+    private  getWidestRow() {
+        return getWidestRowIndex(this.state.values);
     }
 
     render() {
         return (
             <AppContext.Provider value={
                 {
-                    text : this.state.text,
-                    table1: this.state.pointsCharData,
-                    changeText: ():void => {
-                        const newText:string = 'Xoxo';
-                        this.setState(
-                            {
-                                text: newText
-                            }
-                        )
-                    },
-                    changeText2: (newText:string):void => {
-                        this.setState(
-                            {
-                                text: newText
-                            }
-                        )
-                    }
+                    state : this.state,
+                    changeTableCellValue: this.changeTableCellValue,
+                    addColumnToTable: this.addColumnToTable,
+                    addRowToTable: this.addRowToTable,
+                    getTableSize: this.getTableSize,
+                    getWidestRow: this.getWidestRow
                 }}>
                 {this.props.children}
             </AppContext.Provider>);
     }
+}
+
+function dataIsArray(data: any) {
+    return (Array.isArray(data) && data.length > 0 && Array.isArray(data[0]));
+}
+
+function getTableSize(array: Array<Array<any>>): { width: number, height: number } {
+    let height = 0;
+    let width = 0;
+
+    if (dataIsArray(array)) {
+        if (array.length > height) {
+            height = array.length;
+        }
+        width = getTableWidth(array);
+    }
+    return {
+        width,
+        height
+    };
+}
+
+function getTableWidth(array: Array<Array<any>>, initValue: number = 0): number {
+    return array.reduce((previousValue: any, currentValue: Array<any>) => {
+        if (currentValue.length > previousValue) {
+            return currentValue.length;
+        }
+        return previousValue;
+    }, initValue);
+}
+
+function getWidestRowIndex(array: Array<Array<any>>, initValue: number = 0): number {
+    return array.reduce((previousValue: any, currentValue: Array<any>, index: number, array: Array<Array<any>>) => {
+        if (currentValue.length > array[previousValue].length) {
+            return index;
+        }
+        return previousValue;
+    }, initValue);
 }

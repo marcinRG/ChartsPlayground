@@ -1,0 +1,147 @@
+import './Table.component.scss';
+
+import * as React from 'react';
+import {Component} from 'react';
+import {TableHeaderComponent} from '../components/TableComponents/TableHeader.component';
+import {CellComponent} from '../components/TableComponents/Cell.component';
+
+
+//import {ITableState} from '../../interfaces/ITableState';
+
+interface IState {
+    title: string;
+    values: Array<Array<any>>;
+    selectedRow?: number;
+    selectedColumn?: number;
+}
+
+interface IProps {
+    title: string;
+    values: Array<Array<any>>;
+    selectedRow?: number;
+    selectedColumn?: number;
+}
+
+export class TableComponent extends Component<IProps, IState> {
+    private readonly tableRef: any;
+
+    constructor(props: IProps) {
+        super(props);
+        this.tableRef = React.createRef<HTMLTableElement>();
+        this.state = {
+            title: 'Table title',
+            values: [
+                [1, 2],
+                [2, 25],
+                [3, 58],
+                [4, 98],
+                [5, 73],
+                [6, 58],
+                [7, 11],
+                [8, 82],
+                [9, 22],
+                [10, 72],
+                [11, 98],
+                [12, 45]],
+            selectedRow: 0,
+            selectedColumn: 0
+        };
+        this.changeCell = this.changeCell.bind(this);
+        this.clickHeader = this.clickHeader.bind(this);
+        this.addColumn = this.addColumn.bind(this);
+        this.addRow = this.addRow.bind(this);
+    }
+
+    private changeCell(newValue: any, row: number, column: number): void {
+        // let newValues: any = [...this.state.values];
+        // newValues[row][column] = newValue;
+        // this.setState({
+        //     values: newValues
+        // });
+    }
+
+    private addColumn() {
+        // const widestRow = getWidestRowIndex(this.state.values);
+        // let newValues: any = [...this.state.values];
+        // newValues[widestRow].push('');
+        // this.setState({
+        //     values: newValues
+        // });
+    }
+
+    private addRow() {
+        // let newValues: any = [...this.state.values];
+        // newValues.push([]);
+        // this.setState({
+        //     values: newValues
+        // });
+    }
+
+    private clickHeader(): void {
+    }
+
+    private createHeaders(prefix: string): any {
+        // const tableSize = getTableSize(this.state.values);
+        // let headers: any[] = [];
+        // headers.push(<TableHeaderComponent key={-1} action={this.clickHeader} value={'-'}/>);
+        // for (let i = 0; i < tableSize.width; i++) {
+        //     headers.push(<TableHeaderComponent key={i} action={this.clickHeader} value={prefix + '' + (i + 1)}/>)
+        // }
+        // return headers;
+    }
+
+    private createTableCells(row: number, maxWidth: number): any {
+        let cells: any[] = [];
+        cells.push(<TableHeaderComponent action={this.clickHeader} key={row} value={'R' + '' + (row + 1)}/>);
+        for (let i = 0; i < maxWidth; i++) {
+            const value = this.state.values[row][i] || '';
+            cells.push(<CellComponent key={'R' + row + 'C' + i} value={value}
+                                      row={row} column={i} action={this.changeCell}/>);
+        }
+        return cells;
+    }
+
+    private createTableRows(maxHeight: number, maxWidth: number): any {
+        let rows: any[] = [];
+        for (let i = 0; i < maxHeight; i++) {
+            rows.push(<tr key={i}>{this.createTableCells(i, maxWidth)}</tr>)
+        }
+        return rows;
+    }
+
+
+    private createCellsAndColumnHeaders(): any {
+        // const tableSize = getTableSize(this.state.values);
+        // return (
+        //     <tbody>
+        //     {this.createTableRows(tableSize.height, tableSize.width)}
+        //     </tbody>
+//        );
+    }
+
+    private createTable(): any {
+        return (
+            <table className="data-table">
+                <thead>
+                <tr>
+                    {this.createHeaders('C')}
+                </tr>
+                </thead>
+                {this.createCellsAndColumnHeaders()}
+            </table>
+        );
+    }
+
+    render(): any {
+        return (<div className="data-table-component">
+            <label>Dataset title:</label>
+            <input type="text" className="table-title"></input>
+            <label>Dataset:</label>
+            <div className="data-table-wrapper">
+                {this.createTable()}
+            </div>
+            <button onClick={this.addRow}>Add row</button>
+            <button onClick={this.addColumn}>Add column</button>
+        </div>);
+    }
+}

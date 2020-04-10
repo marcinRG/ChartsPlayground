@@ -10,12 +10,14 @@ import {InfoPage} from './components/Pages/InfoPage/Info.page';
 import {DataProvider} from './appContext/Data.provider';
 import {Consumer2} from './appContext/Consumer2';
 import {Consumer3} from './appContext/Consumer3';
+import {Consumer4} from './appContext/Consumer4';
 //import {TableAndChartComponent} from './components/TableAndChartComponent/TableAndChart.component';
 
 ReactDOM.render(
     <DataProvider>
-        <Consumer2></Consumer2>
-        <Consumer3/>
+        {/*<Consumer2></Consumer2>*/}
+        {/*<Consumer3/>*/}
+        <Consumer4/>
     </DataProvider>,
     document.getElementById('App')
 );
