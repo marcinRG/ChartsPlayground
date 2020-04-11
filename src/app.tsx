@@ -11,6 +11,7 @@ import {DataProvider} from './appContext/Data.provider';
 import {Consumer2} from './appContext/Consumer2';
 import {Consumer3} from './appContext/Consumer3';
 import {Consumer4} from './appContext/Consumer4';
+import {TableComponent2} from './appContext/Table.component2';
 //import {TableAndChartComponent} from './components/TableAndChartComponent/TableAndChart.component';
 
 ReactDOM.render(
@@ -22,19 +23,20 @@ ReactDOM.render(
     document.getElementById('App')
 );
 
-{/*<Router hashType="slash">*/}
-{/*    <PageHeaderComponent/>*/}
-{/*    <Switch>*/}
-{/*        <Route path="/charts">*/}
-{/*            <ChartsPage/>*/}
-{/*        </Route>*/}
-{/*        <Route path="/info">*/}
-{/*            <InfoPage/>*/}
-{/*        </Route>*/}
-{/*        <Route exact path="/">*/}
-{/*            <HomePage/>*/}
-{/*        </Route>*/}
 
-{/*    </Switch>*/}
-{/*    <FooterComponent/>*/}
-{/*</Router>*/}
+/*<Router hashType="slash">
+    <PageHeaderComponent/>
+    <Switch>
+        <Route path="/charts">
+            <ChartsPage/>
+        </Route>
+        <Route path="/info">
+            <InfoPage/>
+        </Route>
+        <Route exact path="/">
+            <HomePage/>
+        </Route>
+
+    </Switch>
+    <FooterComponent/>
+</Router>*/

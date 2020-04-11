@@ -43,6 +43,7 @@ export class DataProvider extends Component<any, IState> {
         this.addRowToTable= this.addRowToTable.bind(this);
         this.getTableSize= this.getTableSize.bind(this);
         this.getWidestRow= this.getWidestRow.bind(this);
+        this.changeTitle= this.changeTitle.bind(this);
     }
 
     private changeTableCellValue(newValue: any, row: number, column: number): void {
@@ -59,6 +60,12 @@ export class DataProvider extends Component<any, IState> {
         newValues[widestRow].push('');
         this.setState({
             values: newValues
+        });
+    }
+
+    private changeTitle(newTitle: string) {
+        this.setState({
+            title: newTitle
         });
     }
 
@@ -83,11 +90,14 @@ export class DataProvider extends Component<any, IState> {
             <AppContext.Provider value={
                 {
                     state : this.state,
-                    changeTableCellValue: this.changeTableCellValue,
-                    addColumnToTable: this.addColumnToTable,
-                    addRowToTable: this.addRowToTable,
-                    getTableSize: this.getTableSize,
-                    getWidestRow: this.getWidestRow
+                    actions: {
+                        changeTableCellValue: this.changeTableCellValue,
+                        addColumnToTable: this.addColumnToTable,
+                        addRowToTable: this.addRowToTable,
+                        getTableSize: this.getTableSize,
+                        getWidestRow: this.getWidestRow,
+                        changeTitle: this.changeTitle
+                    }
                 }}>
                 {this.props.children}
             </AppContext.Provider>);
@@ -114,7 +124,7 @@ function getTableSize(array: Array<Array<any>>): { width: number, height: number
     };
 }
 
-function getTableWidth(array: Array<Array<any>>, initValue: number = 0): number {
+export function getTableWidth(array: Array<Array<any>>, initValue: number = 0): number {
     return array.reduce((previousValue: any, currentValue: Array<any>) => {
         if (currentValue.length > previousValue) {
             return currentValue.length;

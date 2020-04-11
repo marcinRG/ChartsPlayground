@@ -1,16 +1,18 @@
 import * as React from 'react';
 import {AppContext} from './app.context';
+import {TableComponent2} from './Table.component2';
+import {BarChartComponent2} from './BarChart.component2';
+import '../components/TableAndChartComponent/TableAndChart.component.scss';
 
 export function Consumer4() {
     return (
         <AppContext.Consumer>
-            {context => <div>
-                <input type="text" />
-                <p>{context.getWidestRow()}</p>
-                <button onClick={()=>{
-                    console.log(context.getTableSize());
-                }}>Push button</button>
-            </div>}
+            {context => <React.Fragment>
+                <div className="table-chart-component">
+                    <TableComponent2 key={1} title={context.state.title} values={context.state.values} actions={context.actions} />
+                    <BarChartComponent2 title={context.state.title} values={context.state.values}/>
+                </div>
+            </React.Fragment>}
         </AppContext.Consumer>
     );
 }
