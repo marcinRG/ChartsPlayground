@@ -1,55 +1,24 @@
 import * as React from 'react';
-import * as d3 from 'd3';
 import {Component} from 'react';
-import {IChartProperties} from '../../../interfaces/IChartProperties';
-import {
-    appendPoints,
-    appendXAxis, appendXGrid,
-    appendYAxis, appendYGrid,
-    getExtent,
-    getScale,
-    getXRange,
-    getYRange
-} from '../../../utils/3d.utils';
+import {createPointsChart} from '../../../utils/3d.utils';
+import {transformInputData} from '../../../utils/data.utils';
 
-export class PointsChartComponent extends Component {
+export class PointsChartComponent extends Component<any, any> {
     private svgRef: any;
-    private data: any;
-    private chartProperties: IChartProperties;
 
     constructor(props: any) {
         super(props);
-        this.data = [{x: 3, y: 10}, {x: 2, y: 70},{x: 6, y: 75}, {x: 8, y: 100}, {x: 1, y: 47}, {x: 4, y: 55}, {x: 5, y: 20}, {x: 7, y: 82}];
-        this.chartProperties = {
-            margins: {
-                left: 50,
-                right: 50,
-                top: 50,
-                bottom: 50
-            },
-            xMax: 500,
-            yMax: 500,
-        }
+        this.svgRef = React.createRef<HTMLElement>();
     }
 
     componentDidMount(): void {
-
-        const svg = d3.select(this.svgRef.current);
-        const xExtent = getExtent(this.data, 'x', true);
-        const yExtent = getExtent(this.data, 'y', true);
-        const xRange = getXRange(this.chartProperties);
-        const yRange = getYRange(this.chartProperties);
-        const xScale = getScale(xRange, xExtent);
-        const yScale = getScale(yRange, yExtent);
-        appendXGrid(svg, xScale, this.chartProperties);
-        appendYGrid(svg, yScale, this.chartProperties);
-        appendXAxis(svg, xScale, this.chartProperties);
-        appendYAxis(svg, yScale, this.chartProperties);
-        appendPoints(svg, xScale, yScale, this.chartProperties, this.data);
+        this.svgRef.current = createPointsChart(this.svgRef.current,
+            transformInputData(this.props.values).data, this.props.chartProperties);
     }
 
     render() {
-        this.svgRef = React.createRef<HTMLElement>();
+        this.svgRef.current = createPointsChart(this.svgRef.current,
+            transformInputData(this.props.values).data, this.props.chartProperties);
         return (
             <div className="chart-component">
                 <label className="chart-title">Chart title</label>

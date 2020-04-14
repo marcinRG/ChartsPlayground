@@ -5,75 +5,27 @@ import {Component} from 'react';
 import {CellComponent} from './Cell.component';
 import {TableHeaderComponent} from './TableHeader.component';
 
-//import {ITableState} from '../../interfaces/ITableState';
-
-interface IState {
-    title: string;
-    values: Array<Array<any>>;
-    selectedRow?: number;
-    selectedColumn?: number;
-}
-
-export class TableComponent extends Component<{}, IState> {
+export class TableComponent extends Component<any, any> {
     private readonly tableRef: any;
+    private readonly inputRef: any;
 
     constructor(props: any) {
         super(props);
         this.tableRef = React.createRef<HTMLTableElement>();
-        this.state = {
-            title: 'Table title',
-            values: [
-                [1, 2],
-                [2, 25],
-                [3, 58],
-                [4, 98],
-                [5, 73],
-                [6, 58],
-                [7, 11],
-                [8, 82],
-                [9, 22],
-                [10, 72],
-                [11, 98],
-                [12, 45]],
-            selectedRow: 0,
-            selectedColumn: 0
-        };
-        this.changeCell = this.changeCell.bind(this);
+        this.inputRef = React.createRef<HTMLInputElement>();
+        this.changeTitle=this.changeTitle.bind(this);
         this.clickHeader = this.clickHeader.bind(this);
-        this.addColumn = this.addColumn.bind(this);
-        this.addRow = this.addRow.bind(this);
     }
 
-    private changeCell(newValue: any, row: number, column: number): void {
-        let newValues: any = [...this.state.values];
-        newValues[row][column] = newValue;
-        this.setState({
-            values: newValues
-        });
-    }
-
-    private addColumn() {
-        const widestRow = getWidestRowIndex(this.state.values);
-        let newValues: any = [...this.state.values];
-        newValues[widestRow].push('');
-        this.setState({
-            values: newValues
-        });
-    }
-
-    private addRow() {
-        let newValues: any = [...this.state.values];
-        newValues.push([]);
-        this.setState({
-            values: newValues
-        });
+    private changeTitle() {
+        this.props.actions.changeTitle(this.inputRef.current.value);
     }
 
     private clickHeader(): void {
     }
 
     private createHeaders(prefix: string): any {
-        const tableSize = getTableSize(this.state.values);
+        const tableSize = this.props.actions.getTableSize();
         let headers: any[] = [];
         headers.push(<TableHeaderComponent key={-1} action={this.clickHeader} value={'-'}/>);
         for (let i = 0; i < tableSize.width; i++) {
@@ -86,9 +38,9 @@ export class TableComponent extends Component<{}, IState> {
         let cells: any[] = [];
         cells.push(<TableHeaderComponent action={this.clickHeader} key={row} value={'R' + '' + (row + 1)}/>);
         for (let i = 0; i < maxWidth; i++) {
-            const value = this.state.values[row][i] || '';
+            const value = this.props.values[row][i] || '';
             cells.push(<CellComponent key={'R' + row + 'C' + i} value={value}
-                                      row={row} column={i} action={this.changeCell}/>);
+                                      row={row} column={i} action={this.props.actions.changeTableCellValue}/>);
         }
         return cells;
     }
@@ -101,9 +53,8 @@ export class TableComponent extends Component<{}, IState> {
         return rows;
     }
 
-
     private createCellsAndColumnHeaders(): any {
-        const tableSize = getTableSize(this.state.values);
+        const tableSize = this.props.actions.getTableSize();
         return (
             <tbody>
             {this.createTableRows(tableSize.height, tableSize.width)}
@@ -127,51 +78,13 @@ export class TableComponent extends Component<{}, IState> {
     render(): any {
         return (<div className="data-table-component">
             <label>Dataset title:</label>
-            <input type="text" className="table-title"></input>
+            <input type="text"  ref={this.inputRef}  className="table-title" value={this.props.title} onChange={this.changeTitle} />
             <label>Dataset:</label>
             <div className="data-table-wrapper">
                 {this.createTable()}
             </div>
-            <button onClick={this.addRow}>Add row</button>
-            <button onClick={this.addColumn}>Add column</button>
+            <button onClick={this.props.actions.addRowToTable}>Add row</button>
+            <button onClick={this.props.actions.addColumnToTable}>Add column</button>
         </div>);
     }
-}
-
-function dataIsArray(data: any) {
-    return (Array.isArray(data) && data.length > 0 && Array.isArray(data[0]));
-}
-
-function getTableSize(array: Array<Array<any>>): { width: number, height: number } {
-    let height = 0;
-    let width = 0;
-
-    if (dataIsArray(array)) {
-        if (array.length > height) {
-            height = array.length;
-        }
-        width = getTableWidth(array);
-    }
-    return {
-        width,
-        height
-    };
-}
-
-function getTableWidth(array: Array<Array<any>>, initValue: number = 0): number {
-    return array.reduce((previousValue: any, currentValue: Array<any>) => {
-        if (currentValue.length > previousValue) {
-            return currentValue.length;
-        }
-        return previousValue;
-    }, initValue);
-}
-
-function getWidestRowIndex(array: Array<Array<any>>, initValue: number = 0): number {
-    return array.reduce((previousValue: any, currentValue: Array<any>, index: number, array: Array<Array<any>>) => {
-        if (currentValue.length > array[previousValue].length) {
-            return index;
-        }
-        return previousValue;
-    }, initValue);
 }

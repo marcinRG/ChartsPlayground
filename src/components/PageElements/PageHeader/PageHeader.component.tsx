@@ -31,11 +31,12 @@ export class PageHeaderComponent extends Component<any, any> {
         return 'app-menu';
     }
 
+/*
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         return (
             <React.Fragment>
                 <header className="page-title">
-      {/*              <svg xmlns="http://www.w3.org/2000/svg" className="img-background" viewBox="0 0 2622 926"
+                    <svg xmlns="http://www.w3.org/2000/svg" className="img-background" viewBox="0 0 2622 926"
                          preserveAspectRatio="xMidYMid slice">
                         <defs>
                             <clipPath id="svgTextPath">
@@ -71,7 +72,7 @@ export class PageHeaderComponent extends Component<any, any> {
                         <text className="svg-text first txt-shadow">Think</text>
                         <text className="svg-text second txt-shadow">outside</text>
                         <text className="svg-text third txt-shadow">of the box</text>
-                    </svg>*/}
+                    </svg>
                     <div className="header-content">
                         <nav className="app-navbar">
                             <h1 className="app-title">Charts playground</h1>
@@ -88,9 +89,8 @@ export class PageHeaderComponent extends Component<any, any> {
             </React.Fragment>
         );
     }
-
-
-    /*    render(props: any): any {
+*/
+    render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
             return (
                 <React.Fragment>
                     <header className="page-title">
@@ -157,9 +157,9 @@ export class PageHeaderComponent extends Component<any, any> {
                             </nav>
 
                         </div>
-                        {/!*<img className="title-image" src={img2} alt="smiling blond woman"/>*!/}
+                        {/*<img className="title-image" src={img2} alt="smiling blond woman"/>*/}
                     </header>
                 </React.Fragment>
             );
-        }*/
+        }
 }

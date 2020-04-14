@@ -7,24 +7,9 @@ import {FooterComponent} from './components/PageElements/Footer/Footer.component
 import {HomePage} from './components/Pages/HomePage/Home.page';
 import {ChartsPage} from './components/Pages/ChatsPage/Charts.page';
 import {InfoPage} from './components/Pages/InfoPage/Info.page';
-import {DataProvider} from './appContext/Data.provider';
-import {Consumer2} from './appContext/Consumer2';
-import {Consumer3} from './appContext/Consumer3';
-import {Consumer4} from './appContext/Consumer4';
-import {TableComponent2} from './appContext/Table.component2';
-//import {TableAndChartComponent} from './components/TableAndChartComponent/TableAndChart.component';
 
 ReactDOM.render(
-    <DataProvider>
-        {/*<Consumer2></Consumer2>*/}
-        {/*<Consumer3/>*/}
-        <Consumer4/>
-    </DataProvider>,
-    document.getElementById('App')
-);
-
-
-/*<Router hashType="slash">
+<Router hashType="slash">
     <PageHeaderComponent/>
     <Switch>
         <Route path="/charts">
@@ -36,7 +21,8 @@ ReactDOM.render(
         <Route exact path="/">
             <HomePage/>
         </Route>
-
     </Switch>
     <FooterComponent/>
-</Router>*/
+</Router>
+    , document.getElementById('App')
+);

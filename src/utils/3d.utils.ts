@@ -148,3 +148,89 @@ export function appendPie(svgElement: any, colorScale: any, arc: any, chartPrope
         .style('font-size', 10)
         .style('font-weight','bold');
 }
+
+export function createBarChart(svgElement: any, data: any, settings: any) {
+    const svg = d3.select(svgElement);
+    svg.selectAll('g').remove();
+    const xExtent = getExtent(data, 'x', true);
+    const xRange = getXRange(settings);
+    const yRange = getYRange(settings);
+    const xScale = getScale(xRange, xExtent);
+    const yMax = d3.max(data, (d: any) => {
+        return +d.y;
+    });
+    const yScale = getScale(yRange, [0, yMax]);
+    appendYGrid(svg, yScale, settings);
+    appendXAxis(svg, xScale, settings);
+    appendYAxis(svg, yScale, settings);
+    appendBars(svg, xScale, yScale, settings, data);
+    return svgElement;
+}
+
+export function createLineChart(svgElement: any, data: any, settings: any) {
+    const svg = d3.select(svgElement);
+    svg.selectAll('g').remove();
+    const xExtent = getExtent(data, 'x', true);
+    const yExtent = getExtent(data, 'y', true);
+    const xRange = getXRange(settings);
+    const yRange = getYRange(settings);
+    const xScale = getScale(xRange, xExtent);
+    const yScale = getScale(yRange, yExtent);
+    appendXGrid(svg, xScale, settings);
+    appendYGrid(svg, yScale, settings);
+    appendXAxis(svg, xScale, settings);
+    appendYAxis(svg, yScale, settings);
+    appendPoints(svg, xScale, yScale, settings, data);
+    appendLine(svg, xScale, yScale, settings, data);
+    return svgElement;
+}
+
+export function createPieChart(svgElement: any, data: any, settings: any) {
+    const svg = d3.select(svgElement);
+    svg.selectAll('g').remove();
+    const yExtent = getExtent(data, 'y');
+    let color = d3.scaleLinear<string, number>().domain(yExtent)
+        .range(['pink', 'red']);
+    const pies = d3.pie().value((d: any) => {
+        return d.y;})(data);
+    const radius = getChartHeight(settings) * 0.55 - settings.margins.left;
+    const arc = d3.arc<any>()
+        .innerRadius(radius / 4)
+        .outerRadius(radius);
+    appendPie(svg,color,arc,settings,pies);
+    return svgElement;
+}
+
+export function createAreaChart(svgElement: any, data: any, settings: any) {
+    const svg = d3.select(svgElement);
+    svg.selectAll('g').remove();
+    const xExtent = getExtent(data, 'x');
+    const yExtent = getExtent(data, 'y', true);
+    const xRange = getXRange(settings);
+    const yRange = getYRange(settings);
+    const xScale = getScale(xRange, xExtent);
+    const yScale = getScale(yRange, yExtent);
+    appendXGrid(svg, xScale, settings);
+    appendYGrid(svg, yScale, settings);
+    appendXAxis(svg, xScale, settings);
+    appendYAxis(svg, yScale, settings);
+    appendArea(svg, xScale, yScale, settings, data);
+    return svgElement;
+}
+
+export function createPointsChart(svgElement: any, data: any, settings: any) {
+    const svg = d3.select(svgElement);
+    svg.selectAll('g').remove();
+    const xExtent = getExtent(data, 'x', true);
+    const yExtent = getExtent(data, 'y', true);
+    const xRange = getXRange(settings);
+    const yRange = getYRange(settings);
+    const xScale = getScale(xRange, xExtent);
+    const yScale = getScale(yRange, yExtent);
+    appendXGrid(svg, xScale, settings);
+    appendYGrid(svg, yScale, settings);
+    appendXAxis(svg, xScale, settings);
+    appendYAxis(svg, yScale, settings);
+    appendPoints(svg, xScale, yScale, settings, data);
+    return svgElement;
+}

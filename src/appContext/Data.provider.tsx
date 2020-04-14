@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Component, ReactNode} from 'react';
-import {AppContext} from './app.context'
+import {Component} from 'react';
+import {DataContext} from './data.context'
 
 
 interface IState {
@@ -19,25 +19,7 @@ export class DataProvider extends Component<any, IState> {
 
     constructor(props: any) {
         super(props);
-        this.state = {
-            title: 'Table title',
-            values: [
-                [1, 2],
-                [2, 25],
-                [3, 58],
-                [4, 98],
-                [5, 73],
-                [6, 58],
-                [7, 11],
-                [8, 82],
-                [9, 22],
-                [10, 72],
-                [11, 98],
-                [12, 45]],
-            selectedRow: 0,
-            selectedColumn: 0
-        };
-
+        this.state = this.props.initData;
         this.changeTableCellValue= this.changeTableCellValue.bind(this);
         this.addColumnToTable= this.addColumnToTable.bind(this);
         this.addRowToTable= this.addRowToTable.bind(this);
@@ -87,7 +69,7 @@ export class DataProvider extends Component<any, IState> {
 
     render() {
         return (
-            <AppContext.Provider value={
+            <DataContext.Provider value={
                 {
                     state : this.state,
                     actions: {
@@ -100,7 +82,7 @@ export class DataProvider extends Component<any, IState> {
                     }
                 }}>
                 {this.props.children}
-            </AppContext.Provider>);
+            </DataContext.Provider>);
     }
 }
 
