@@ -44,26 +44,23 @@
     float: left;
   }
 
+  .chart-img {
+    display: inline-block;
+    height: 75px;
+    width: 75px;
+    margin-right: 22px;
+    vertical-align: middle;
+  }
+
   .chart-title {
     @include font-peace-sans;
-    display: block;
+    display: inline-block;
     color: $text-color-lighter;
     font-size: 1.5em;
     letter-spacing: 2px;
     font-weight: normal;
     height: 75px;
-    margin-bottom: 1.2em;
-
-    &::before {
-      display: inline-block;
-      height: 75px;
-      width: 75px;
-      margin-right: 12px;
-      content: '';
-      background-image: url('../../../images/icon-chart.png');
-      background-repeat: no-repeat;
-      vertical-align: middle;
-    }
+    margin-bottom: .2em;
   }
 
   .chart-text {
@@ -71,5 +68,24 @@
     color: $text-color;
     width: 80%;
     margin: 1em auto;
+
+    & > a {
+      color: $text-color;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: .5em;
+      display: inline-block;
+      width: 100%;
+      font-size: .85em;
+      font-weight: bolder;
+      text-align: right;
+
+      &:after {
+        @include font-awesome;
+        margin-left: 5px;
+        content: '\f101';
+      }
+    }
+
   }
 }
