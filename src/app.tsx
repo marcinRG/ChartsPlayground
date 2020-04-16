@@ -7,22 +7,24 @@ import {FooterComponent} from './components/PageElements/Footer/Footer.component
 import {HomePage} from './components/Pages/HomePage/Home.page';
 import {ChartsPage} from './components/Pages/ChatsPage/Charts.page';
 import {InfoPage} from './components/Pages/InfoPage/Info.page';
+import {OtherProvider} from './appContext/Other.provider';
 
 ReactDOM.render(
-<Router hashType="slash">
-    <PageHeaderComponent/>
-    <Switch>
-        <Route path="/charts">
-            <ChartsPage/>
-        </Route>
-        <Route path="/info">
-            <InfoPage/>
-        </Route>
-        <Route exact path="/">
-            <HomePage/>
-        </Route>
-    </Switch>
-    <FooterComponent/>
-</Router>
-    , document.getElementById('App')
+    <OtherProvider>
+        <Router hashType="slash">
+            <PageHeaderComponent/>
+            <Switch>
+                <Route path="/charts">
+                    <ChartsPage/>
+                </Route>
+                <Route path="/info">
+                    <InfoPage/>
+                </Route>
+                <Route exact path="/">
+                    <HomePage/>
+                </Route>
+            </Switch>
+            <FooterComponent/>
+        </Router>
+    </OtherProvider>, document.getElementById('App')
 );
