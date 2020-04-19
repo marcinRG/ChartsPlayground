@@ -14,7 +14,7 @@ export function getExtent(data: any[], field: string, addBounds: boolean = false
         return d[field];
     });
     if (addBounds) {
-        extent[0] = extent[0] - .1 * extent[1];
+        extent[0] = extent[0] - .1 * extent[0];
         extent[1] = extent[1] + .1 * extent[1];
     }
     return extent;
@@ -205,11 +205,11 @@ export function createAreaChart(svgElement: any, data: any, settings: any) {
     const svg = d3.select(svgElement);
     svg.selectAll('g').remove();
     const xExtent = getExtent(data, 'x');
-    const yExtent = getExtent(data, 'y', true);
+    const yExtent = getExtent(data, 'y');
     const xRange = getXRange(settings);
     const yRange = getYRange(settings);
     const xScale = getScale(xRange, xExtent);
-    const yScale = getScale(yRange, yExtent);
+    const yScale = getScale(yRange, [0, d3.max(yExtent)]);
     appendXGrid(svg, xScale, settings);
     appendYGrid(svg, yScale, settings);
     appendXAxis(svg, xScale, settings);

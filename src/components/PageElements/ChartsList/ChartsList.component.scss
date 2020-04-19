@@ -80,7 +80,7 @@
       font-weight: bolder;
       text-align: right;
 
-      &:after {
+      &::after {
         @include font-awesome;
         margin-left: 5px;
         content: '\f101';

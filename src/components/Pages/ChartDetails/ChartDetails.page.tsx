@@ -8,27 +8,35 @@ import {
     DataProviderBarChart, DataProviderLineChart, DataProviderPieChart,
     DataProviderPointChart, DataProviderAreaChart
 } from '../../../appContext/charts.data.providers';
+import {ChartTypes} from '../../../enums/ChartTypes';
 
-export function ChartsPage(props: any) {
+export function ChartsDetails(props: any) {
+    const id = parseInt(props.match.params.chartId, 10);
     return (
         <div>
-            <h1>Charts</h1>
+            <h1>Chart&apos;s details</h1>
+            {(id === ChartTypes.BAR_CHART) &&
             <DataProviderBarChart>
                 <TableAndBarChartComponent></TableAndBarChartComponent>
-            </DataProviderBarChart>
+            </DataProviderBarChart>}
+
+            {(id === ChartTypes.LINE_CHART) &&
             <DataProviderLineChart>
                 <TableAndLineChartComponent></TableAndLineChartComponent>
-            </DataProviderLineChart>
-            <DataProviderPieChart>
-                <TableAndPieChartComponent></TableAndPieChartComponent>
-            </DataProviderPieChart>
+            </DataProviderLineChart>}
+            {(id === ChartTypes.POINT_CHART) &&
             <DataProviderPointChart>
                 <TableAndPointsChartComponent></TableAndPointsChartComponent>
-            </DataProviderPointChart>
+            </DataProviderPointChart>}
+
+            {(id === ChartTypes.PIE_CHART) &&
+            <DataProviderPieChart>
+                <TableAndPieChartComponent></TableAndPieChartComponent>
+            </DataProviderPieChart>}
+
+            {(id === ChartTypes.AREA_CHART) &&
             <DataProviderAreaChart>
                 <TableAndAreaChartComponent></TableAndAreaChartComponent>
-            </DataProviderAreaChart>
+            </DataProviderAreaChart>}
         </div>);
 }
-
-

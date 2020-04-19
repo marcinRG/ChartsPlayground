@@ -15,7 +15,7 @@ export function ChartsListComponent(props: any) {
                                 <img src={document.image} alt={document.name} className="chart-img"/>
                                 <h4 className="chart-title">{document.name}</h4>
                                 <p className="chart-text">{document.description}
-                                   <Link to={'/charts/' + document.iD}>See more</Link>
+                                   <Link to={'/chartsDetails/' + document.iD}>See more</Link>
                                 </p>
                             </div>
                         )}

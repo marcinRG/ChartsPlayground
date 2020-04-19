@@ -1,4 +1,4 @@
-import {getTableWidth} from '../appContext/Data.provider';
+import {getTableWidth} from '../appContext/Data.provider.hoc';
 
 export function transformInputData(array: any[]): any {
     if (isDataValid(array)) {
