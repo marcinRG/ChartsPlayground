@@ -10,6 +10,38 @@
   padding: 5em 0 5em 12em;
   height: 700px;
 
+  .image-box {
+    position: absolute;
+    width: 415px;
+    height: 415px;
+    overflow: hidden;
+    top: 110px;
+    left: 210px;
+    z-index: 100;
+    ////clip-path: polygon(0% 0%, 0% 100%, 0 50%, 50% 0, 100% 50%, 50% 100%, 0 50%, 0 100%, 100% 100%, 100% 0%);
+    //clip-path: polygon(0% 0%, 0 100%, 5% 50%, 50% 5%, 95% 50%, 50% 95%, 5% 50%, 0 100%, 100% 100%, 100% 0%);
+    //background-image: radial-gradient(lightgrey, rgba(245, 245, 245, 0.2));
+  }
+
+  .image-container {
+    position: absolute;
+    width: 415px;
+    height: 415px;
+    background-color: white;
+    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
+
+    img {
+      width: 80%;
+      height: 80%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+
+  }
+
   &::before {
     width: 2400px;
     height: 2400px;
@@ -33,6 +65,13 @@
     z-index: -1;
     right: 0;
     top: 0;
+  }
+
+  .content-wrapper {
+    width: 65%;
+    height: 100%;
+    margin-left: 12%;
+    border: 2px dotted blue;
   }
 
 }
