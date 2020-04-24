@@ -39,6 +39,19 @@ export class PageHeaderComponent extends Component<any, any> {
                         <svg xmlns="http://www.w3.org/2000/svg" className="img-background" viewBox="0 0 2622 926"
                              preserveAspectRatio="xMidYMid slice">
                             <defs>
+                                <clipPath id="small-square-path">
+                                    <path d="M227,60 L394,227 L227,394 L60,227 Z" fill="black" />
+                                </clipPath>
+                                <filter id="square-shadow">
+                                    <feMorphology operator="dilate" radius="4" in="SourceAlpha" result="DILATE"/>
+                                    <feGaussianBlur in="DILATE" result="BLURRED" stdDeviation="10"/>
+                                    <feFlood floodOpacity=".5" floodColor="grey" result="COLOR"></feFlood>
+                                    <feComposite in="COLOR" in2="BLURRED" operator="in"
+                                                 result="SHADOW_COLORED"></feComposite>
+                                    <feComposite in="SourceGraphic" in2="SHADOW_COLORED" operator="over"
+                                                 result="out"></feComposite>
+                                </filter>
+
                                 <clipPath id="svgTextPath">
                                     <text className="svg-text" x="715" y="300" textLength="520px" lengthAdjust="spacing"
                                           fontSize="120px">Think</text>

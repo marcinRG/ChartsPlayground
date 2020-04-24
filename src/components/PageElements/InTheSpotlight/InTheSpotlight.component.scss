@@ -10,36 +10,18 @@
   padding: 5em 0 5em 12em;
   height: 700px;
 
+  .section-title {
+    padding-left: 20%;
+  }
+
   .image-box {
     position: absolute;
-    width: 415px;
-    height: 415px;
+    width: 454px;
+    height: 454px;
     overflow: hidden;
     top: 110px;
     left: 210px;
     z-index: 100;
-    ////clip-path: polygon(0% 0%, 0% 100%, 0 50%, 50% 0, 100% 50%, 50% 100%, 0 50%, 0 100%, 100% 100%, 100% 0%);
-    //clip-path: polygon(0% 0%, 0 100%, 5% 50%, 50% 5%, 95% 50%, 50% 95%, 5% 50%, 0 100%, 100% 100%, 100% 0%);
-    //background-image: radial-gradient(lightgrey, rgba(245, 245, 245, 0.2));
-  }
-
-  .image-container {
-    position: absolute;
-    width: 415px;
-    height: 415px;
-    background-color: white;
-    clip-path: polygon(50% 5%, 95% 50%, 50% 95%, 5% 50%);
-
-    img {
-      width: 80%;
-      height: 80%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    }
-
   }
 
   &::before {
@@ -71,7 +53,74 @@
     width: 65%;
     height: 100%;
     margin-left: 12%;
-    border: 2px dotted blue;
   }
 
+  .description {
+    position: relative;
+    margin: 5% auto 0;
+    line-height: 180%;
+    text-align: justify;
+    width: 45%;
+    padding-left: 45px;
+    padding-top: 20px;
+    font-style: italic;
+
+    &::before {
+      @include font-awesome;
+      content: $fa-var-quote-left;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $text-color-lighter;
+      font-size: 45px;
+      font-style: normal;
+    }
+  }
+
+  .name-link {
+    margin: 30px auto;
+    width: 45%;
+    position: relative;
+
+    &::after {
+      content: ' ';
+      position: absolute;
+      width: 150px;
+      height: 50px;
+      top: 250%;
+      left: 20%;
+      background-image: url('../../../images/small-square.svg');
+    }
+
+  }
+
+  .name {
+    display: inline-block;
+    width: 70%;
+    font-size: 1.05em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $text-color;
+  }
+
+  .link {
+    color: $text-color-lighter;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: .5em;
+    display: inline-block;
+    width: 30%;
+    font-size: .85em;
+    font-weight: bold;
+    text-align: right;
+
+
+    &::after {
+      @include font-awesome;
+      margin-left: 5px;
+      content: $fa-var-angle-double-right;
+    }
+  }
 }
+

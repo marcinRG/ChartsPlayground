@@ -6,4 +6,44 @@
   position: relative;
   z-index: 1;
   height: 700px;
+
+  .section-title {
+    text-align: center;
+  }
+
+  .content-wrapper {
+    @include block-border-box;
+    position: relative;
+    height: 100%;
+    margin: 0 5%;
+  }
+
+  .text-wrapper {
+    @include block-border-box;
+    padding: 5% 15%;
+    height: 100%;
+  }
+}
+
+
+.slider-button {
+  width: 50px;
+  height: 100px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 55%;
+  cursor: pointer;
+
+  &.left {
+    background-image: url('../../../images/small-triangle-left.svg');
+    left: 15%;
+    transform: translateX(-50px);
+  }
+
+  &.right {
+    background-image: url('../../../images/small-triangle-right.svg');
+    left: 85%;
+  }
+
 }
