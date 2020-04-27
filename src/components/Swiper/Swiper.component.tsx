@@ -5,7 +5,7 @@ import {IChartDescription} from '../../appContext/Other.provider';
 import {SwiperPanelComponent} from './SwiperPanel.component';
 
 
-export function SwiperComponent(props: any) {
+export function SwiperComponent() {
     return (
         <OtherContext.Consumer>
             {context =>
@@ -16,7 +16,7 @@ export function SwiperComponent(props: any) {
                     <div className="swiper-content">
                         {(getSelectedCharts(context.state.chartList, context.state.selectedCharts)).map((document: IChartDescription, i: number) =>
                             <SwiperPanelComponent key={i} imgPath={document.imageBig} id={i}
-                                                  headerText={document.name} current={context.state.currentSelectedChart} />
+                                                  headerText={document.name} current={context.state.currentSelectedChart} elemID={document.iD}/>
                         )}
                     </div>
                     <button className="swiper-button right" onClick={() => {

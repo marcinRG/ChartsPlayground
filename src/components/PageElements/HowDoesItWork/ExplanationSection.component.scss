@@ -38,8 +38,77 @@
 
   .selected-slider {
     float: right;
-    height: 600px;
+    height: 300px;
     width: 75%;
+    margin-top: 150px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container-wrapper {
+    position: absolute;
+
+    &.first {
+      z-index: 10;
+      left: 0;
+      top: 0;
+    }
+
+    &.second {
+      z-index: 20;
+      left: 340px;
+      top: 0;
+    }
+
+    &.third {
+      z-index: 30;
+      left: 680px;
+      top: 0;
+    }
+  }
+
+  .container-box {
+    height: 300px;
+    width: 700px;
+    clip-path: polygon(0% 100%, 20% 0%, 60% 0%, 40% 100%);
+    transition-duration: .5s;
+    transition-property: clip-path;
+    position: relative;
+    overflow: hidden;
+    background-position: center center;
+
+    &::after {
+      position: absolute;
+      content: '';
+      background-color: rgba(147, 147, 147, .5);
+      transition-property: background-color;
+      transition-duration: .5s;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    &.first {
+      background-image: url('./../../../images/bckgrnd1.jpg');
+    }
+
+    &.second {
+      background-image: url('./../../../images/bckgrnd2.jpg');
+    }
+
+    &.third {
+      background-image: url('./../../../images/bckgrnd4.jpg');
+    }
+
+
+    &:hover {
+      clip-path: polygon(0% 100%, 20% 0%, 100% 0%, 80% 100%);
+
+      &::after {
+        background-color: transparent;
+      }
+    }
   }
 
 

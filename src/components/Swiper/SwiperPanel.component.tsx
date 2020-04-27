@@ -1,12 +1,14 @@
 import * as React from 'react';
 import './SwiperPanel.component.scss';
 import {FramedImageComponent} from '../FramedImage/FamedImage.component';
+import {Link} from 'react-router-dom';
 
 interface ISwiperPanelProps  {
     imgPath: string;
     headerText: string;
     id: number;
     current: number;
+    elemID: number;
 }
 
 export function SwiperPanelComponent(props: ISwiperPanelProps) {
@@ -16,7 +18,7 @@ export function SwiperPanelComponent(props: ISwiperPanelProps) {
                 <FramedImageComponent imagePath={props.imgPath}/>
                 <div className="text-wrapper">
                     <h3 className="small-title header-text">{props.headerText}
-                        <a className="additional-text" href="#">see more ...</a>
+                        <Link className="additional-text" to={'/chartsDetails/' + props.elemID}>see more ...</Link>
                     </h3>
                 </div>
             </div>
@@ -26,8 +28,8 @@ export function SwiperPanelComponent(props: ISwiperPanelProps) {
 
 function getClassName(id: number, current: number): string {
     let txt: string= '';
-    if (Math.abs(id-current) === 2) {txt = 'left';}
-    if (Math.abs(id-current) === 1) {txt = 'right';}
-    if (Math.abs(id-current) === 0) {txt = 'center';}
+    if (id-current === 1 || id-current === -2) {txt = 'right';}
+    if (id-current === -1 || id-current === 2) {txt = 'left';}
+    if (id-current === 0) {txt = 'center';}
     return 'swiper-panel ' + txt;
 }

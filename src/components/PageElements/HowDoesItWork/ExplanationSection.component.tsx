@@ -14,7 +14,17 @@ export function ExplanationSectionComponent(props: any) {
                         rerum sunt voluptas voluptatem voluptates!</p>
                     <button className="app-button">Read more</button>
                 </div>
-                <div className="selected-slider"></div>
+                <div className="selected-slider">
+                    <div className="container-wrapper first">
+                        <div className="container-box first"></div>
+                    </div>
+                    <div className="container-wrapper second">
+                        <div className="container-box second"></div>
+                    </div>
+                    <div className="container-wrapper third">
+                        <div className="container-box third"></div>
+                    </div>
+                </div>
             </div>
         </section>
     );
