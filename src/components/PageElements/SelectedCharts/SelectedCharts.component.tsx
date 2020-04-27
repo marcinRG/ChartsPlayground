@@ -1,17 +1,14 @@
 import * as React from 'react';
 import './SelectedCharts.component.scss';
+// @ts-ignore
+import * as img1 from '../../../images/woman.jpg';
+import {SwiperComponent} from '../../Swiper/Swiper.component';
 
 export function SelectedChartsComponent(props: any) {
     return (
         <section className="selected-charts">
-            <div className="content-wrapper">
-                <div className="text-wrapper">
-                    <h2 className="section-title">Selected charts</h2>
-                    <button className="slider-button left"></button>
-
-                    <button className="slider-button right"></button>
-                </div>
-            </div>
+            <h2 className="section-title">Selected charts</h2>
+            <SwiperComponent></SwiperComponent>
         </section>
     );
 }
