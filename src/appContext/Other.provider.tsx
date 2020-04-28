@@ -38,86 +38,75 @@ export interface IChartDescription {
     description: string
 }
 
-export class OtherProvider extends Component<{},
+export interface IOtherProviderState {
+    splashScreenVisible: boolean;
+    chartList: IChartDescription[];
+    selectedCharts: number[];
+    currentSelectedChart: number;
+    spotlightedChart: number;
+}
+
+const charts:IChartDescription[] = [
     {
-        splashScreenVisible: boolean;
-        chartList: IChartDescription[];
-        selectedCharts: number[];
-        currentSelectedChart: number
-    }> {
-    public state: {
-        splashScreenVisible: boolean;
-        chartList: IChartDescription[];
-        selectedCharts: number[];
-        currentSelectedChart: number
-    };
+        iD: ChartTypes.BAR_CHART,
+        name: 'bar chart',
+        image: barimg,
+        imageBig: barbig,
+        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
+    },
+    {
+        iD: ChartTypes.LINE_CHART,
+        name: 'line chart',
+        image: linepointimg,
+        imageBig: linepointBig,
+        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
+    },
+    {
+        iD: ChartTypes.PIE_CHART,
+        name: 'pie chart',
+        image: pieimg,
+        imageBig: pieBig,
+        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
+    },
+    {
+        iD: ChartTypes.POINT_CHART,
+        name: 'points chart',
+        image: pointsimg,
+        imageBig: pointsBig,
+        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
+    },
+    {
+        iD: ChartTypes.AREA_CHART,
+        name: 'area chart',
+        image: areaimg,
+        imageBig: areabig,
+        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
+    }
+];
+
+export class OtherProvider extends Component<any, IOtherProviderState> {
+    public state:IOtherProviderState;
 
     constructor(props: any) {
         super(props);
         this.state = {
             splashScreenVisible: true,
-            chartList: [
-                {
-                    iD: ChartTypes.BAR_CHART,
-                    name: 'bar chart',
-                    image: barimg,
-                    imageBig: barbig,
-                    description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-                },
-                {
-                    iD: ChartTypes.LINE_CHART,
-                    name: 'line chart',
-                    image: linepointimg,
-                    imageBig: linepointBig,
-                    description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-                },
-                {
-                    iD: ChartTypes.PIE_CHART,
-                    name: 'pie chart',
-                    image: pieimg,
-                    imageBig: pieBig,
-                    description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-                },
-                {
-                    iD: ChartTypes.POINT_CHART,
-                    name: 'points chart',
-                    image: pointsimg,
-                    imageBig: pointsBig,
-                    description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-                },
-                {
-                    iD: ChartTypes.AREA_CHART,
-                    name: 'area chart',
-                    image: areaimg,
-                    imageBig: areabig,
-                    description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-                }
-            ],
+            chartList: charts,
+            spotlightedChart : randomInt(0, charts.length),
             selectedCharts: [ChartTypes.AREA_CHART, ChartTypes.PIE_CHART, ChartTypes.BAR_CHART],
             currentSelectedChart: 0
-        }
+        };
         this.changeSelectedChart = this.changeSelectedChart.bind(this);
     }
 
     changeSelectedChart(value: number): void {
         let newValue: number;
         if (value === 1) {
-            console.log('add 1');
-            if (this.state.currentSelectedChart === this.state.selectedCharts.length - 1) {
-                newValue = 0;
-            } else {
-                newValue = this.state.currentSelectedChart + 1;
-            }
+            newValue = getNext(this.state.currentSelectedChart, 0, this.state.selectedCharts.length - 1);
         }
         if (value === -1) {
-            console.log('remove one');
-            if (this.state.currentSelectedChart === 0) {
-                newValue = this.state.selectedCharts.length - 1;
-            } else {
-                newValue = this.state.currentSelectedChart - 1;
-            }
+            newValue = getPrevious(this.state.currentSelectedChart,0,this.state.selectedCharts.length - 1);
         }
-        console.log('new Value: ' + newValue);
         this.setState({
             currentSelectedChart: newValue
         });
@@ -134,4 +123,24 @@ export class OtherProvider extends Component<{},
                 {this.props.children}
             </OtherContext.Provider>);
     }
+}
+
+function getNext(current: number, min: number, max: number): number {
+    if (current === max) {
+        return min;
+    } else {
+        return current + 1;
+    }
+}
+
+function getPrevious(current: number, min: number, max: number): number {
+    if (current === min) {
+        return max;
+    } else {
+        return current - 1;
+    }
+}
+
+function randomInt(min:number, max: number) {
+    return min + Math.floor((max - min) * Math.random());
 }

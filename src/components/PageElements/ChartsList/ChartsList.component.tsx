@@ -3,7 +3,7 @@ import './ChartsList.component.scss';
 import {OtherContext} from '../../../appContext/other.context';
 import {Link} from 'react-router-dom';
 
-export function ChartsListComponent(props: any) {
+export function ChartsListComponent() {
     return (
         <OtherContext.Consumer>
             {context =>

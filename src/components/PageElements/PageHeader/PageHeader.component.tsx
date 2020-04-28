@@ -6,6 +6,7 @@ import * as img1 from '../../../images/header-bckg.jpg';
 // @ts-ignore
 import * as img2 from '../../../images/woman_title.png';
 import {Link} from 'react-router-dom';
+import {SearchFormComponent} from '../../SearchForm/SearchForm.component';
 
 export class PageHeaderComponent extends Component<any, any> {
 
@@ -102,7 +103,7 @@ export class PageHeaderComponent extends Component<any, any> {
                                     <li className="menu-item"><Link to="/charts">charts</Link></li>
                                     <li className="menu-item"><Link to="/about">about</Link></li>
                                     <li className="menu-item"><Link to="/info">info</Link></li>
-                                    <li className="menu-item search"><span>search</span></li>
+                                    <li className="menu-item"><SearchFormComponent/></li>
                                 </ul>
                             </nav>
 

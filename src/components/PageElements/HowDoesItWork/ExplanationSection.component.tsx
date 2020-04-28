@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './ExplanationSection.component.scss';
 
-export function ExplanationSectionComponent(props: any) {
+export function ExplanationSectionComponent() {
     return (
         <section className="how-does-it-work-section">
             <div className="selected-wrapper">

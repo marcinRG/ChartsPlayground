@@ -10,7 +10,7 @@ interface IState {
 
 export function DataProviderHOC(DataContext: any, initData: IState): any {
     return (
-        class DataProvider extends Component<any, any> {
+        class DataProvider extends Component<any, IState> {
             public state: IState;
 
             constructor(props: any) {

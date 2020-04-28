@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Footer.component.scss';
 
-export function FooterComponent(props: any) {
+export function FooterComponent() {
     return (
         <footer className="footer">
             <div className="content-wrapper">
@@ -23,12 +23,12 @@ export function FooterComponent(props: any) {
                     </div>
                 </div>
                 <div className="social-links">
-                    <a href="https://www.google.com/" className="link-social vk"></a>
-                    <a href="https://www.google.com/" className="link-social facebook"></a>
+                    <a href="https://www.vk.com/" className="link-social vk"></a>
+                    <a href="https://www.facebook.com/" className="link-social facebook"></a>
                     <a href="https://www.google.com/" className="link-social google-plus"></a>
-                    <a href="https://www.google.com/" className="link-social digg"></a>
-                    <a href="https://www.google.com/" className="link-social youtube"></a>
-                    <a href="https://www.google.com/" className="link-social linkedin"></a>
+                    <a href="https://www.digg.com/" className="link-social digg"></a>
+                    <a href="https://www.youtube.com/" className="link-social youtube"></a>
+                    <a href="https://www.linkedin.com/" className="link-social linkedin"></a>
                 </div>
                 <div className="copyright-info">Copyright © 2017. PSDFreebies.com  | Best PSD Template for free</div>
             </div>

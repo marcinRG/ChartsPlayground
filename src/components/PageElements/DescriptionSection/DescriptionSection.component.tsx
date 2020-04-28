@@ -3,7 +3,7 @@ import './DescriptionSection.component.scss';
 // @ts-ignore
 import * as img1 from '../../../images/computer.png';
 
-export function DescriptionSectionComponent(props: any) {
+export function DescriptionSectionComponent() {
     return (
         <section className="short-description">
             <div className="content-wrapper">

@@ -152,18 +152,6 @@
         color: $white;
       }
 
-      &.search {
-
-        &::before {
-          @include font-awesome;
-          display: inline-block;
-          font-size: 1em;
-          font-weight: 700;
-          margin-right: 3px;
-          content: $fa-var-search;
-        }
-      }
-
       @media screen {
         @media (min-width: $media-br-1) {
           display: inline-block;
