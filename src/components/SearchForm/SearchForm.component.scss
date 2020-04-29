@@ -11,3 +11,22 @@
     content: $fa-var-search;
   }
 }
+
+.search-input {
+  box-sizing: border-box;
+  font-size: 1em;
+  vertical-align: center;
+  width: 0;
+  height: 23px;
+  border-radius: 0;
+  transition-duration: .5s;
+
+  &.visible {
+    border-radius: 9px;
+    margin-right: 5px;
+    width: 190px;
+    padding: 0 10px;
+  }
+
+}
+

@@ -10,6 +10,7 @@ interface IRender {
 
 interface ISearchFormState {
     showTextInput: boolean;
+    searchText: string;
 }
 
 export class SearchFormComponent extends Component<any,ISearchFormState> implements IRender {
@@ -17,9 +18,11 @@ export class SearchFormComponent extends Component<any,ISearchFormState> impleme
     constructor(props: any) {
         super(props);
         this.state = {
-            showTextInput: false
+            showTextInput: false,
+            searchText: ''
         };
         this.toggleTextInput = this.toggleTextInput.bind(this);
+        this.search = this.search.bind(this);
     }
 
     toggleTextInput() {
@@ -28,12 +31,25 @@ export class SearchFormComponent extends Component<any,ISearchFormState> impleme
         });
     }
 
+    search() {
+        console.log('search ...');
+
+    }
+
     render() {
         return (
             <React.Fragment>
-                <input className="search-input" type="text" />
-                <span className="search-title">search</span>
+                <input className={getInputClass(this.state.showTextInput)} onKeyUp={this.search} type="text" />
+                <span className="search-title" onClick={this.toggleTextInput}>search</span>
             </React.Fragment>
         );
     }
+}
+
+function getInputClass(isVisble: boolean): string {
+    const className = 'search-input';
+    if (isVisble) {
+        return className + ' visible';
+    }
+    return className;
 }
