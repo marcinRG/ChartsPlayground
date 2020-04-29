@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component} from 'react';
+import {ChangeEvent, Component, KeyboardEvent} from 'react';
 import {OtherContext} from './other.context';
 // @ts-ignore
 import * as areaimg from '../../src/images/area-chart.png';
@@ -29,6 +29,7 @@ import * as pieBig from '../../src/images/pie-chart-big.png';
 
 
 import {ChartTypes} from '../enums/ChartTypes';
+import {Key} from 'ts-key-enum';
 
 export interface IChartDescription {
     iD: number;
@@ -38,15 +39,22 @@ export interface IChartDescription {
     description: string
 }
 
+export interface ISearchFormProperties {
+    showTextInput: boolean;
+    searchText: string;
+    goToSearchPage: boolean;
+}
+
 export interface IOtherProviderState {
     splashScreenVisible: boolean;
     chartList: IChartDescription[];
     selectedCharts: number[];
     currentSelectedChart: number;
     spotlightedChart: number;
+    searchFormProperties: ISearchFormProperties;
 }
 
-const charts:IChartDescription[] = [
+const charts: IChartDescription[] = [
     {
         iD: ChartTypes.BAR_CHART,
         name: 'bar chart',
@@ -85,18 +93,26 @@ const charts:IChartDescription[] = [
 ];
 
 export class OtherProvider extends Component<any, IOtherProviderState> {
-    public state:IOtherProviderState;
+    public state: IOtherProviderState;
 
     constructor(props: any) {
         super(props);
         this.state = {
             splashScreenVisible: true,
             chartList: charts,
-            spotlightedChart : randomInt(0, charts.length),
+            spotlightedChart: randomInt(0, charts.length),
             selectedCharts: [ChartTypes.AREA_CHART, ChartTypes.PIE_CHART, ChartTypes.BAR_CHART],
-            currentSelectedChart: 0
+            currentSelectedChart: 0,
+            searchFormProperties: {
+                showTextInput: false,
+                searchText: '',
+                goToSearchPage: false
+            }
         };
         this.changeSelectedChart = this.changeSelectedChart.bind(this);
+        this.toggleSearchFormTextInput = this.toggleSearchFormTextInput.bind(this);
+        this.changeSearchFormText = this.changeSearchFormText.bind(this);
+        this.setGoToSearchPage = this.setGoToSearchPage.bind(this);
     }
 
     changeSelectedChart(value: number): void {
@@ -105,10 +121,34 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
             newValue = getNext(this.state.currentSelectedChart, 0, this.state.selectedCharts.length - 1);
         }
         if (value === -1) {
-            newValue = getPrevious(this.state.currentSelectedChart,0,this.state.selectedCharts.length - 1);
+            newValue = getPrevious(this.state.currentSelectedChart, 0, this.state.selectedCharts.length - 1);
         }
         this.setState({
             currentSelectedChart: newValue
+        });
+    }
+
+    toggleSearchFormTextInput() {
+        const newValue: ISearchFormProperties = {...this.state.searchFormProperties};
+        newValue.showTextInput = !this.state.searchFormProperties.showTextInput;
+        this.setState({
+            searchFormProperties: newValue
+        });
+    }
+
+    changeSearchFormText(text: string) {
+        const newValue: ISearchFormProperties = {...this.state.searchFormProperties};
+        newValue.searchText = text;
+        this.setState({
+            searchFormProperties: newValue
+        });
+    }
+
+    setGoToSearchPage(b: boolean) {
+        const newValue: ISearchFormProperties = {...this.state.searchFormProperties};
+        newValue.goToSearchPage = b;
+        this.setState({
+            searchFormProperties: newValue
         });
     }
 
@@ -117,7 +157,10 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
             <OtherContext.Provider value={
                 {
                     state: this.state, actions: {
-                        changeSelectedChart: this.changeSelectedChart
+                        changeSelectedChart: this.changeSelectedChart,
+                        toggleSearchFormTextInput: this.toggleSearchFormTextInput,
+                        changeSearchFormText: this.changeSearchFormText,
+                        setGoToSearchPage: this.setGoToSearchPage
                     }
                 }}>
                 {this.props.children}
@@ -141,6 +184,6 @@ function getPrevious(current: number, min: number, max: number): number {
     }
 }
 
-function randomInt(min:number, max: number) {
+function randomInt(min: number, max: number) {
     return min + Math.floor((max - min) * Math.random());
 }

@@ -6,6 +6,9 @@ export interface IOtherContextState {
     state?: IOtherProviderState;
     actions?: {
         changeSelectedChart?: (i: number) => void;
+        toggleSearchFormTextInput?:() => void;
+        changeSearchFormText?: (text: string) => void;
+        setGoToSearchPage?: (b: boolean) => void;
     };
 }
 

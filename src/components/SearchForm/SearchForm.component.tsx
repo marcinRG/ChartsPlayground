@@ -1,55 +1,47 @@
 import * as React from 'react';
 import './SearchForm.component.scss';
-import {Component} from 'react';
+import {ChangeEvent, KeyboardEvent} from 'react';
+import {Key} from 'ts-key-enum';
+import {Redirect} from 'react-router';
+import {OtherContext} from '../../appContext/other.context';
 
-interface IRender {
-    render: React.ReactElement<any, string | React.JSXElementConstructor<any>> |
-        string | number | {} | React.ReactNodeArray | React.ReactPortal
-        | boolean | null | undefined;
-}
-
-interface ISearchFormState {
-    showTextInput: boolean;
-    searchText: string;
-}
-
-export class SearchFormComponent extends Component<any,ISearchFormState> implements IRender {
-    public state: ISearchFormState;
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            showTextInput: false,
-            searchText: ''
-        };
-        this.toggleTextInput = this.toggleTextInput.bind(this);
-        this.search = this.search.bind(this);
-    }
-
-    toggleTextInput() {
-        this.setState({
-            showTextInput: !this.state.showTextInput
-        });
-    }
-
-    search() {
-        console.log('search ...');
-
-    }
-
-    render() {
+export function SearchFormComponent() {
         return (
-            <React.Fragment>
-                <input className={getInputClass(this.state.showTextInput)} onKeyUp={this.search} type="text" />
-                <span className="search-title" onClick={this.toggleTextInput}>search</span>
-            </React.Fragment>
+            <OtherContext.Consumer>
+                {context =>
+                    <React.Fragment>
+                        {(context.state.searchFormProperties.goToSearchPage) &&
+                        <Redirect to={'/search/' + getSafeString(context.state.searchFormProperties.searchText)} push={true}/>}
+                        <input className={getInputClass(context.state.searchFormProperties.showTextInput)}
+                               onKeyUp={(event: KeyboardEvent<HTMLInputElement>)=>{
+                                   if (event.key === Key.Enter) {
+                                       context.actions.setGoToSearchPage(true);
+                                   }
+                               }}
+                               onChange={(event: ChangeEvent<HTMLInputElement>)=>{
+                                   context.actions.changeSearchFormText(event.target.value);
+                               }}
+                               value={context.state.searchFormProperties.searchText} type="text"/>
+                        <span className="search-title"
+                              onClick={() => {
+                                  context.actions.toggleSearchFormTextInput();
+                              }}>
+                            search</span>
+                    </React.Fragment>
+                }
+            </OtherContext.Consumer>
         );
-    }
 }
 
-function getInputClass(isVisble: boolean): string {
+function getInputClass(isVisible: boolean): string {
     const className = 'search-input';
-    if (isVisble) {
+    if (isVisible) {
         return className + ' visible';
     }
     return className;
+}
+
+function getSafeString(str: string) {
+    const regex: RegExp = /%/gm;
+    return str.replace(regex, '@_@');
 }

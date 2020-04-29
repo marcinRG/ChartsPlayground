@@ -10,6 +10,7 @@ import {InfoPage} from './components/Pages/InfoPage/Info.page';
 import {OtherProvider} from './appContext/Other.provider';
 import {ChartsDetails} from './components/Pages/ChartDetails/ChartDetails.page';
 import {AboutPage} from './components/Pages/AboutPage/About.page';
+import {SearchResultsPage} from './components/Pages/SearchPage/SearchResults.page';
 
 ReactDOM.render(
     <OtherProvider>
@@ -17,6 +18,7 @@ ReactDOM.render(
             <PageHeaderComponent/>
             <Switch>
                 <Route path="/chartsDetails/:chartId" component={ChartsDetails} />
+                <Route path="/search/:searchTxT" component={SearchResultsPage} />
                 <Route path="/charts">
                     <ChartsPage/>
                 </Route>
