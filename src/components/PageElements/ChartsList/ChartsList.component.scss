@@ -83,7 +83,7 @@
       &::after {
         @include font-awesome;
         margin-left: 5px;
-        content: '\f101';
+        content: $fa-var-angle-double-right;
       }
     }
 

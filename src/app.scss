@@ -38,7 +38,7 @@ body {
 }
 
 .app-button {
-  @include box-shadow-helper(3);
+  @include box-shadow-helper(4);
   background-color: $background-red;
   color: white;
   font-weight: bold;

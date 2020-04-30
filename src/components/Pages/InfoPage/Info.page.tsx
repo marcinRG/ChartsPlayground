@@ -1,5 +1,13 @@
 import *  as React from 'react';
+import './Info.page.scss';
 
 export function InfoPage(props: any) {
-    return (<div>Info</div>);
+    return (
+        <React.Fragment>
+            <div className="info-page">
+                <div className="selected-wrapper">
+                    <h2 className="section-title">Info</h2>
+                </div>
+            </div>
+        </React.Fragment>);
 }

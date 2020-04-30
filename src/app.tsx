@@ -19,6 +19,9 @@ ReactDOM.render(
             <Switch>
                 <Route path="/chartsDetails/:chartId" component={ChartsDetails} />
                 <Route path="/search/:searchTxT" component={SearchResultsPage} />
+                <Route path="/search">
+                    <SearchResultsPage/>
+                </Route>
                 <Route path="/charts">
                     <ChartsPage/>
                 </Route>

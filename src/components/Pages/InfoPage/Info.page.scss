@@ -1,0 +1,13 @@
+@import './../../../scss/variables';
+@import './../../../scss/mixins';
+
+.info-page {
+
+  .selected-wrapper {
+    padding: 2em 5em 4em;
+  }
+
+  .section-title {
+    text-align: center;
+  }
+}
