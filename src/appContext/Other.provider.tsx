@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ChangeEvent, Component, KeyboardEvent} from 'react';
+import {Component} from 'react';
 import {OtherContext} from './other.context';
 // @ts-ignore
 import * as areaimg from '../../src/images/area-chart.png';
@@ -29,7 +29,6 @@ import * as pieBig from '../../src/images/pie-chart-big.png';
 
 
 import {ChartTypes} from '../enums/ChartTypes';
-import {Key} from 'ts-key-enum';
 
 export interface IChartDescription {
     iD: number;
@@ -98,7 +97,7 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            splashScreenVisible: true,
+            splashScreenVisible: false,
             chartList: charts,
             spotlightedChart: randomInt(0, charts.length),
             selectedCharts: [ChartTypes.AREA_CHART, ChartTypes.PIE_CHART, ChartTypes.BAR_CHART],
@@ -113,6 +112,13 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
         this.toggleSearchFormTextInput = this.toggleSearchFormTextInput.bind(this);
         this.changeSearchFormText = this.changeSearchFormText.bind(this);
         this.setGoToSearchPage = this.setGoToSearchPage.bind(this);
+        this.toggleSplashScreenVisibility = this.toggleSplashScreenVisibility.bind(this);
+    }
+
+    toggleSplashScreenVisibility() {
+        this.setState({
+            splashScreenVisible: !this.state.splashScreenVisible
+        });
     }
 
     changeSelectedChart(value: number): void {
@@ -160,7 +166,8 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
                         changeSelectedChart: this.changeSelectedChart,
                         toggleSearchFormTextInput: this.toggleSearchFormTextInput,
                         changeSearchFormText: this.changeSearchFormText,
-                        setGoToSearchPage: this.setGoToSearchPage
+                        setGoToSearchPage: this.setGoToSearchPage,
+                        toggleSplashScreenVisibility: this.toggleSplashScreenVisibility
                     }
                 }}>
                 {this.props.children}

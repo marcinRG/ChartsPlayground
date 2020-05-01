@@ -106,7 +106,6 @@ export class PageHeaderComponent extends Component<any, any> {
                                     <li className="menu-item"><SearchFormComponent/></li>
                                 </ul>
                             </nav>
-
                         </div>
                         {/*<img className="title-image" src={img2} alt="smiling blond woman"/>*/}
                     </header>

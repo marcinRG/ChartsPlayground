@@ -9,6 +9,7 @@ export interface IOtherContextState {
         toggleSearchFormTextInput?:() => void;
         changeSearchFormText?: (text: string) => void;
         setGoToSearchPage?: (b: boolean) => void;
+        toggleSplashScreenVisibility?: () => void;
     };
 }
 

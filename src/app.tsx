@@ -11,30 +11,36 @@ import {OtherProvider} from './appContext/Other.provider';
 import {ChartsDetails} from './components/Pages/ChartDetails/ChartDetails.page';
 import {AboutPage} from './components/Pages/AboutPage/About.page';
 import {SearchResultsPage} from './components/Pages/SearchPage/SearchResults.page';
+import {OtherContext} from './appContext/other.context';
 
 ReactDOM.render(
     <OtherProvider>
         <Router hashType="slash">
-            <PageHeaderComponent/>
-            <Switch>
-                <Route path="/chartsDetails/:chartId" component={ChartsDetails} />
-                <Route path="/search/:searchTxT" component={SearchResultsPage} />
-                <Route path="/search">
-                    <SearchResultsPage/>
-                </Route>
-                <Route path="/charts">
-                    <ChartsPage/>
-                </Route>
-                <Route path="/info">
-                    <InfoPage/>
-                </Route>
-                <Route path="/about">
-                    <AboutPage/>
-                </Route>
-                <Route exact path="/">
-                    <HomePage/>
-                </Route>
-            </Switch>
+            <OtherContext.Consumer>
+                {context =>
+                    <Switch>
+                        <PageHeaderComponent/>
+                        <Route path="/chartsDetails/:chartId" component={ChartsDetails} />
+                        <Route path="/search/:searchTxT" component={SearchResultsPage} />
+                        <Route path="/search">
+                            <SearchResultsPage/>
+                        </Route>
+                        <Route path="/charts">
+                            <ChartsPage/>
+                        </Route>
+                        <Route path="/info">
+                            <InfoPage/>
+                        </Route>
+                        <Route path="/about">
+                            <AboutPage/>
+                        </Route>
+                        <Route exact path="/">
+                            <HomePage/>
+                        </Route>
+                    </Switch>
+                }
+            </OtherContext.Consumer>
+
             <FooterComponent/>
         </Router>
     </OtherProvider>, document.getElementById('App')

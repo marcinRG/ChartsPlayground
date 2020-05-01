@@ -16,13 +16,34 @@ export function ExplanationSectionComponent() {
                 </div>
                 <div className="selected-slider">
                     <div className="container-wrapper first">
-                        <div className="container-box first"></div>
+                        <div className="container-box first">
+                            <div className="container-text">
+                                <h4>Lorem ipsum</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Alias consequuntur corporis doloribus dolorum eos
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div className="container-wrapper second">
-                        <div className="container-box second"></div>
+                        <div className="container-box second">
+                            <div className="container-text">
+                                <h4>Lorem ipsum</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Alias consequuntur corporis doloribus dolorum eos
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div className="container-wrapper third">
-                        <div className="container-box third"></div>
+                        <div className="container-box third">
+                            <div className="container-text">
+                                <h4>Lorem ipsum</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Alias consequuntur corporis doloribus dolorum eos
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

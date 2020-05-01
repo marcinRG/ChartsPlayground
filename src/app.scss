@@ -38,12 +38,13 @@ body {
 }
 
 .app-button {
-  @include box-shadow-helper(4);
+  @include box-shadow-helper(2);
+  cursor: pointer;
   background-color: $background-red;
   color: white;
   font-weight: bold;
-  padding: .75em 4em;
-  font-size: .75em;
+  font-size: 1.25em;
+  padding: .85em 3em;
   border-radius: 1.5em;
   text-transform: uppercase;
 }
