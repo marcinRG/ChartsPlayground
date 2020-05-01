@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export function ErrorPage(props: any) {
+export function ErrorPage() {
     return (
         <div>
             <h1>Error page</h1>

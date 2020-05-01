@@ -4,7 +4,7 @@ import {TableAndChartComponent} from './TableAndChart.component';
 import {TableComponent} from '../TableComponents/Table.component';
 import {PointsChartComponent} from '../ChartComponents/PointsChart/PointsChart.component.';
 
-export function TableAndPointsChartComponent(props: any) {
+export function TableAndPointsChartComponent() {
     return (
         <DataContext.Consumer>
             {context => <React.Fragment>

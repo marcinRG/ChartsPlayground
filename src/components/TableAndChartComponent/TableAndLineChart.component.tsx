@@ -4,7 +4,7 @@ import {TableAndChartComponent} from './TableAndChart.component';
 import {TableComponent} from '../TableComponents/Table.component';
 import {LineChartComponent} from '../ChartComponents/LineChart/LineChart.component';
 
-export function TableAndLineChartComponent(props: any) {
+export function TableAndLineChartComponent() {
     return (
         <DataContext.Consumer>
             {context => <React.Fragment>

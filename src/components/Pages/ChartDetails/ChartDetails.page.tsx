@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './ChartDetails.page.scss';
 
+import {RouteComponentProps} from 'react-router-dom';
 import {TableAndBarChartComponent} from '../../TableAndChartComponent/TableAndBarChart.component';
 import {TableAndLineChartComponent} from '../../TableAndChartComponent/TableAndLineChart.component';
 import {TableAndPieChartComponent} from '../../TableAndChartComponent/TableAndPieChart.component';
@@ -14,8 +15,14 @@ import {ChartTypes} from '../../../enums/ChartTypes';
 import {OtherContext} from '../../../appContext/other.context';
 import {IChartDescription} from '../../../appContext/Other.provider';
 
+interface MatchParams {
+    chartId: string;
+}
 
-export function ChartsDetails(props: any) {
+interface IMatchProps extends RouteComponentProps<MatchParams> {
+}
+
+export function ChartsDetails(props: IMatchProps) {
     const id = parseInt(props.match.params.chartId, 10);
     return (
         <div className="details-page">

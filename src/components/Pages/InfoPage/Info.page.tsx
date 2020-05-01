@@ -1,7 +1,7 @@
 import *  as React from 'react';
 import './Info.page.scss';
 
-export function InfoPage(props: any) {
+export function InfoPage() {
     return (
         <React.Fragment>
             <div className="info-page">

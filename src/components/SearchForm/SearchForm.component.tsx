@@ -4,6 +4,7 @@ import {ChangeEvent, KeyboardEvent} from 'react';
 import {Key} from 'ts-key-enum';
 import {Redirect} from 'react-router';
 import {OtherContext} from '../../appContext/other.context';
+import {getSafeString} from '../../utils/oter.utils';
 
 export function SearchFormComponent() {
         return (
@@ -41,7 +42,3 @@ function getInputClass(isVisible: boolean): string {
     return className;
 }
 
-function getSafeString(str: string) {
-    const regex: RegExp = /%/gm;
-    return str.replace(regex, '@_@');
-}

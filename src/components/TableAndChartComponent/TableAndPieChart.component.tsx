@@ -5,7 +5,7 @@ import {TableComponent} from '../TableComponents/Table.component';
 import {PieChartComponent} from '../ChartComponents/PieChart/PieChart.component';
 
 
-export function TableAndPieChartComponent(props: any) {
+export function TableAndPieChartComponent() {
     return (
         <DataContext.Consumer>
             {context => <React.Fragment>

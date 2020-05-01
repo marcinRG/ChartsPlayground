@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './About.page.scss';
 
-export function AboutPage(props: any) {
+export function AboutPage() {
     return (
         <React.Fragment>
             <div className="about-page">

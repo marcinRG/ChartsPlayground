@@ -6,11 +6,21 @@ import {SelectedChartsComponent} from '../../PageElements/SelectedCharts/Selecte
 import {InTheSpotlightComponent} from '../../PageElements/InTheSpotlight/InTheSpotlight.component';
 import {Component} from 'react';
 
+interface IHomePageProps {
+    toggleSplashScreenVisibility: () => void;
+}
 
-export class HomePage extends  Component<any, any> {
+export class HomePage extends  Component<IHomePageProps, any> {
     constructor(props: any) {
         super(props);
-        console.log(props);
+    }
+
+    componentDidMount() {
+        this.props.toggleSplashScreenVisibility();
+    }
+
+    componentWillUnmount() {
+        this.props.toggleSplashScreenVisibility();
     }
 
     render() {

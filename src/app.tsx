@@ -18,29 +18,27 @@ ReactDOM.render(
         <Router hashType="slash">
             <OtherContext.Consumer>
                 {context =>
-                    <Switch>
-                        <PageHeaderComponent/>
-                        <Route path="/chartsDetails/:chartId" component={ChartsDetails} />
-                        <Route path="/search/:searchTxT" component={SearchResultsPage} />
-                        <Route path="/search">
-                            <SearchResultsPage/>
-                        </Route>
-                        <Route path="/charts">
-                            <ChartsPage/>
-                        </Route>
-                        <Route path="/info">
-                            <InfoPage/>
-                        </Route>
-                        <Route path="/about">
-                            <AboutPage/>
-                        </Route>
-                        <Route exact path="/">
-                            <HomePage/>
-                        </Route>
-                    </Switch>
+                    <React.Fragment>
+                        <PageHeaderComponent showSplashScreen={context.state.splashScreenVisible}/>
+                        <Switch>
+                            <Route path="/chartsDetails/:chartId" component={ChartsDetails}/>
+                            <Route path="/search/:searchText?" component={SearchResultsPage}/>
+                            <Route path="/charts">
+                                <ChartsPage/>
+                            </Route>
+                            <Route path="/info">
+                                <InfoPage/>
+                            </Route>
+                            <Route path="/about">
+                                <AboutPage/>
+                            </Route>
+                            <Route exact path="/">
+                                <HomePage toggleSplashScreenVisibility={context.actions.toggleSplashScreenVisibility}/>
+                            </Route>
+                        </Switch>
+                    </React.Fragment>
                 }
             </OtherContext.Consumer>
-
             <FooterComponent/>
         </Router>
     </OtherProvider>, document.getElementById('App')
