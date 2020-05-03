@@ -87,6 +87,15 @@
     }
   }
 
+  .image-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 25%;
+    z-index: 500;
+    height: 70%;
+    width: auto;
+  }
+
 
   .header-content {
     @include set-to-zero;
@@ -97,15 +106,6 @@
     z-index: 2;
     top: 0;
     left: 0;
-
-    .title-image {
-      position: absolute;
-      display: none;
-      width: auto;
-      top: 10%;
-      left: 44%;
-      height: 90%;
-    }
 
     .app-navbar {
       @include block-border-box;

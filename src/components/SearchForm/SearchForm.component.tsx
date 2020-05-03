@@ -4,7 +4,7 @@ import {ChangeEvent, KeyboardEvent} from 'react';
 import {Key} from 'ts-key-enum';
 import {Redirect} from 'react-router';
 import {OtherContext} from '../../appContext/other.context';
-import {getSafeString} from '../../utils/oter.utils';
+import {getElementClass, getSafeString} from '../../utils/other.utils';
 
 export function SearchFormComponent() {
         return (
@@ -35,10 +35,6 @@ export function SearchFormComponent() {
 }
 
 function getInputClass(isVisible: boolean): string {
-    const className = 'search-input';
-    if (isVisible) {
-        return className + ' visible';
-    }
-    return className;
+    return getElementClass(isVisible, 'search-input', 'visible');
 }
 

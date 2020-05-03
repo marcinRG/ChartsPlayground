@@ -9,7 +9,6 @@ import {ChartsPage} from './components/Pages/ChatsPage/Charts.page';
 import {InfoPage} from './components/Pages/InfoPage/Info.page';
 import {OtherProvider} from './appContext/Other.provider';
 import {ChartsDetails} from './components/Pages/ChartDetails/ChartDetails.page';
-import {AboutPage} from './components/Pages/AboutPage/About.page';
 import {SearchResultsPage} from './components/Pages/SearchPage/SearchResults.page';
 import {OtherContext} from './appContext/other.context';
 
@@ -28,9 +27,6 @@ ReactDOM.render(
                             </Route>
                             <Route path="/info">
                                 <InfoPage/>
-                            </Route>
-                            <Route path="/about">
-                                <AboutPage/>
                             </Route>
                             <Route exact path="/">
                                 <HomePage toggleSplashScreenVisibility={context.actions.toggleSplashScreenVisibility}/>

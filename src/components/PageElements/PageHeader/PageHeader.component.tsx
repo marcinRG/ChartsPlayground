@@ -7,7 +7,7 @@ import * as img1 from '../../../images/header-bckg.jpg';
 import * as img2 from '../../../images/woman_title.png';
 import {Link} from 'react-router-dom';
 import {SearchFormComponent} from '../../SearchForm/SearchForm.component';
-import {getElementClass} from '../../../utils/oter.utils';
+import {getElementClass} from '../../../utils/other.utils';
 
 interface IPageHeaderProps {
     showMenu?: boolean;
@@ -39,14 +39,11 @@ export function PageHeaderComponent(props: IPageHeaderProps) {
 
                         <clipPath id="svgTextPath">
                             <text className="svg-text" x="715" y="300" textLength="520px" lengthAdjust="spacing"
-                                  fontSize="120px">Think
-                            </text>
+                                  fontSize="120px">Think</text>
                             <text className="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing"
-                                  fontSize="140px">outside
-                            </text>
+                                  fontSize="140px">outside</text>
                             <text className="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing"
-                                  fontSize="80px">of the box
-                            </text>
+                                  fontSize="80px">of the box</text>
                         </clipPath>
 
                         <filter id="txt-shadow">
@@ -75,14 +72,11 @@ export function PageHeaderComponent(props: IPageHeaderProps) {
                            clipPath="url(#svgTextPath)"/>
                     <text className="svg-text" x="715" y="300" textLength="520px" lengthAdjust="spacing"
                           fontSize="120px"
-                          filter="url(#txt-shadow)">Think
-                    </text>
+                          filter="url(#txt-shadow)">Think</text>
                     <text className="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing"
-                          fontSize="140px" filter="url(#txt-shadow)">outside
-                    </text>
+                          fontSize="140px" filter="url(#txt-shadow)">outside</text>
                     <text className="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing"
-                          fontSize="80px" filter="url(#txt-shadow)">of the box
-                    </text>
+                          fontSize="80px" filter="url(#txt-shadow)">of the box</text>
                 </svg>
                 <div className="header-content">
                     <nav className="app-navbar">
@@ -97,7 +91,7 @@ export function PageHeaderComponent(props: IPageHeaderProps) {
                         </ul>
                     </nav>
                 </div>
-                {/*<img className="title-image" src={img2} alt="smiling blond woman"/>*/}
+                <img className="image-overlay" src={img2} alt="smiling blond woman"/>
             </header>
         </React.Fragment>
     );

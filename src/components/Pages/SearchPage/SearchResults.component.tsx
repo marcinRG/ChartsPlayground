@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Component, RefObject} from 'react';
-import {getUnsafeString} from '../../../utils/oter.utils';
+import {getUnsafeString} from '../../../utils/other.utils';
 
 interface ISearchResultsProps {
     setGoToSearchPage?: (b: boolean) => void;
@@ -10,19 +10,22 @@ interface ISearchResultsProps {
 
 
 export class SearchResultsComponent extends Component<ISearchResultsProps, any> {
-    inputRef: any;
+    inputRef: RefObject<HTMLInputElement>;
 
     constructor(props: any) {
         super(props);
-        this.inputRef = React.createRef<HTMLElement>();
+        this.inputRef = React.createRef<HTMLInputElement>();
     }
 
     componentDidMount() {
         this.props.setGoToSearchPage(false);
+        this.inputRef.current.value = getUnsafeString(this.props.searchText);
     }
 
-    componentDidUpdate() {
-        this.inputRef.current.value =getUnsafeString(this.props.searchText);
+    componentDidUpdate(prevProps: Readonly<ISearchResultsProps>) {
+        if (this.props.searchText!==prevProps.searchText) {
+            this.inputRef.current.value = getUnsafeString(this.props.searchText);
+        }
     }
 
     render() {
@@ -30,7 +33,7 @@ export class SearchResultsComponent extends Component<ISearchResultsProps, any> 
             <React.Fragment>
                 <div className="search-results-component">
                     <form className="search-form">
-                        <input type="text" className="search-text" ref={this.inputRef} defaultValue={''}/>
+                        <input type="text" className="search-text" ref={this.inputRef} defaultValue={this.props.searchText}/>
                         <button className="search-btn"><span>find</span></button>
                     </form>
                     {(this.props.results) && (this.props.results.length > 0) &&
