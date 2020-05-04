@@ -2,6 +2,7 @@ import * as React from 'react';
 import './ChartsList.component.scss';
 import {OtherContext} from '../../../appContext/other.context';
 import {Link} from 'react-router-dom';
+import {PageTitles} from '../../../enums/PageTitles';
 
 export function ChartsListComponent() {
     return (
@@ -15,7 +16,7 @@ export function ChartsListComponent() {
                                 <img src={document.image} alt={document.name} className="chart-img"/>
                                 <h4 className="chart-title">{document.name}</h4>
                                 <p className="chart-text">{document.description}
-                                   <Link to={'/chartsDetails/' + document.iD}>See more</Link>
+                                   <Link to={'/' + PageTitles.CHARTS_DETAILS_PAGE + '/' + document.iD}>See more</Link>
                                 </p>
                             </div>
                         )}

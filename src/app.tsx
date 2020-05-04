@@ -11,6 +11,7 @@ import {OtherProvider} from './appContext/Other.provider';
 import {ChartsDetails} from './components/Pages/ChartDetails/ChartDetails.page';
 import {SearchResultsPage} from './components/Pages/SearchPage/SearchResults.page';
 import {OtherContext} from './appContext/other.context';
+import {PageTitles} from './enums/PageTitles';
 
 ReactDOM.render(
     <OtherProvider>
@@ -20,15 +21,15 @@ ReactDOM.render(
                     <React.Fragment>
                         <PageHeaderComponent showSplashScreen={context.state.splashScreenVisible}/>
                         <Switch>
-                            <Route path="/chartsDetails/:chartId" component={ChartsDetails}/>
-                            <Route path="/search/:searchText?" component={SearchResultsPage}/>
-                            <Route path="/charts">
+                            <Route path={'/'+ PageTitles.CHARTS_DETAILS_PAGE + '/:chartId'} component={ChartsDetails}/>
+                            <Route path={'/' + PageTitles.SEARCH_PAGE +'/:searchText?'} component={SearchResultsPage}/>
+                            <Route path={'/' + PageTitles.CHARTS_PAGE}>
                                 <ChartsPage/>
                             </Route>
-                            <Route path="/info">
+                            <Route path={'/'+ PageTitles.INFO_PAGE}>
                                 <InfoPage/>
                             </Route>
-                            <Route exact path="/">
+                            <Route exact path={'/' + PageTitles.HOME_PAGE}>
                                 <HomePage toggleSplashScreenVisibility={context.actions.toggleSplashScreenVisibility}/>
                             </Route>
                         </Switch>

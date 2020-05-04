@@ -2,6 +2,7 @@ import * as React from 'react';
 import './SwiperPanel.component.scss';
 import {FramedImageComponent} from '../FramedImage/FamedImage.component';
 import {Link} from 'react-router-dom';
+import {PageTitles} from '../../enums/PageTitles';
 
 interface ISwiperPanelProps  {
     imgPath: string;
@@ -18,7 +19,7 @@ export function SwiperPanelComponent(props: ISwiperPanelProps) {
                 <FramedImageComponent imagePath={props.imgPath}/>
                 <div className="text-wrapper">
                     <h3 className="small-title header-text">{props.headerText}
-                        <Link className="additional-text" to={'/chartsDetails/' + props.elemID}>see more ...</Link>
+                        <Link className="additional-text" to={'/'+ PageTitles.CHARTS_DETAILS_PAGE + '/' + props.elemID}>see more ...</Link>
                     </h3>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {IChartDescription} from '../../../appContext/Other.provider';
 import {FramedImageComponent} from '../../FramedImage/FamedImage.component';
 import {Link} from 'react-router-dom';
+import {PageTitles} from '../../../enums/PageTitles';
 
 interface IRandomChartProps {
     charts: IChartDescription[];
@@ -20,7 +21,7 @@ export function RandomChartComponent(props: IRandomChartProps) {
             </p>
             <p className="name-link">
                 <span className="name">{randomChart.name}</span>
-                <Link className="link" to={'/chartsDetails/' + randomChart.iD}>see more</Link>
+                <Link className="link" to={'/' + PageTitles.CHARTS_DETAILS_PAGE+ '/' + randomChart.iD}>see more</Link>
             </p>
         </div>
     )

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Context} from 'react';
-import {IChartDescription, IOtherProviderState} from './Other.provider';
+import {IOtherProviderState} from './Other.provider';
 
 export interface IOtherContextState {
     state?: IOtherProviderState;

@@ -5,6 +5,7 @@ import {Key} from 'ts-key-enum';
 import {Redirect} from 'react-router';
 import {OtherContext} from '../../appContext/other.context';
 import {getElementClass, getSafeString} from '../../utils/other.utils';
+import {PageTitles} from '../../enums/PageTitles';
 
 export function SearchFormComponent() {
         return (
@@ -12,7 +13,7 @@ export function SearchFormComponent() {
                 {context =>
                     <React.Fragment>
                         {(context.state.searchFormProperties.goToSearchPage) &&
-                        <Redirect to={'/search/' + getSafeString(context.state.searchFormProperties.searchText)} push={true}/>}
+                        <Redirect to={'/' +  PageTitles.SEARCH_PAGE + '/'  + getSafeString(context.state.searchFormProperties.searchText)} push={true}/>}
                         <input className={getInputClass(context.state.searchFormProperties.showTextInput)}
                                onKeyUp={(event: KeyboardEvent<HTMLInputElement>)=>{
                                    if (event.key === Key.Enter) {

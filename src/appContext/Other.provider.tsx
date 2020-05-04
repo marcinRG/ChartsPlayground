@@ -27,8 +27,13 @@ import * as pieimg from '../../src/images/pie-chart.png';
 // @ts-ignore
 import * as pieBig from '../../src/images/pie-chart-big.png';
 
+// @ts-ignore
+import * as imgComputer from '../../src/images/computer.png';
+
 
 import {ChartTypes} from '../enums/ChartTypes';
+import {HomePageSections} from '../enums/HomePageSections';
+import {PageTitles} from '../enums/PageTitles';
 
 export interface IChartDescription {
     iD: number;
@@ -44,6 +49,25 @@ export interface ISearchFormProperties {
     goToSearchPage: boolean;
 }
 
+
+interface ITitileDescription {
+    title: string;
+    description: string;
+}
+
+interface  IPageSection  extends ITitileDescription{
+    collection?: ITitileDescription[];
+    image?: {
+        title: string;
+        imagePath: string;
+    }
+}
+
+interface IHomePageContent {
+    [key:string]: IPageSection;
+}
+
+
 export interface IOtherProviderState {
     splashScreenVisible: boolean;
     chartList: IChartDescription[];
@@ -51,6 +75,7 @@ export interface IOtherProviderState {
     currentSelectedChart: number;
     spotlightedChart: number;
     searchFormProperties: ISearchFormProperties;
+    homePageContent: IHomePageContent;
 }
 
 const charts: IChartDescription[] = [
@@ -91,6 +116,49 @@ const charts: IChartDescription[] = [
     }
 ];
 
+// const homePageStaticContent: Map<string,IPageSection> = new Map();
+
+const homePageStaticContent: IHomePageContent = {
+    [HomePageSections.EXPLANATION_SECTION]: {
+        title: 'What\'s this?',
+        description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, aut
+                        commodi
+                        cum
+                        cupiditate dolor
+                        eius error eum expedita facere illum mollitia nemo odit perspiciatis porro, quos repudiandae
+                        velit veritatis vero?`,
+      image: {
+            imagePath: imgComputer,
+            title: 'someone browsing web on a tablet'
+      }
+    },
+    [HomePageSections.DESCRIPTION_SECTION]:{
+        title: 'How does it work?',
+        description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
+                        consequuntur
+                        corporis doloribus dolorum eos,
+                        id incidunt ipsa iure necessitatibus nemo nesciunt nihil quae quod repellendus
+                        rerum sunt voluptas voluptatem voluptates!`,
+        collection: [
+            {
+                title: 'Lorem ipsum',
+                description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                             Alias consequuntur corporis doloribus dolorum eos`
+            },
+            {
+                title: 'Lorem ipsum',
+                description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                             Alias consequuntur corporis doloribus dolorum eos`
+            },
+            {
+                title: 'Lorem ipsum',
+                description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                             Alias consequuntur corporis doloribus dolorum eos`
+            },
+        ]
+    }
+}
+
 export class OtherProvider extends Component<any, IOtherProviderState> {
     public state: IOtherProviderState;
 
@@ -106,7 +174,8 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
                 showTextInput: false,
                 searchText: '',
                 goToSearchPage: false
-            }
+            },
+            homePageContent: homePageStaticContent
         };
         this.changeSelectedChart = this.changeSelectedChart.bind(this);
         this.toggleSearchFormTextInput = this.toggleSearchFormTextInput.bind(this);
@@ -193,4 +262,14 @@ function getPrevious(current: number, min: number, max: number): number {
 
 function randomInt(min: number, max: number) {
     return min + Math.floor((max - min) * Math.random());
+}
+
+function findInCharts(text:string): any[] {
+    return [];
+}
+
+function findInStaticContent(text: string, staticContent: any): any[] {
+    const pageName = PageTitles.HOME_PAGE;
+    let searchResults: any[] = [];
+    return searchResults;
 }

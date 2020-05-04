@@ -8,6 +8,7 @@ import * as img2 from '../../../images/woman_title.png';
 import {Link} from 'react-router-dom';
 import {SearchFormComponent} from '../../SearchForm/SearchForm.component';
 import {getElementClass} from '../../../utils/other.utils';
+import {PageTitles} from '../../../enums/PageTitles';
 
 interface IPageHeaderProps {
     showMenu?: boolean;
@@ -83,10 +84,9 @@ export function PageHeaderComponent(props: IPageHeaderProps) {
                         <h1 className="app-title">Charts playground</h1>
                         <button className="menu-button"></button>
                         <ul className="app-menu">
-                            <li className="menu-item"><Link to="/">home</Link></li>
-                            <li className="menu-item"><Link to="/charts">charts</Link></li>
-                            <li className="menu-item"><Link to="/about">about</Link></li>
-                            <li className="menu-item"><Link to="/info">info</Link></li>
+                            <li className="menu-item"><Link to={'/' +PageTitles.HOME_PAGE }>home</Link></li>
+                            <li className="menu-item"><Link to={'/' + PageTitles.CHARTS_PAGE}>charts</Link></li>
+                            <li className="menu-item"><Link to={'/' + PageTitles.INFO_PAGE}>info</Link></li>
                             <li className="menu-item"><SearchFormComponent/></li>
                         </ul>
                     </nav>
