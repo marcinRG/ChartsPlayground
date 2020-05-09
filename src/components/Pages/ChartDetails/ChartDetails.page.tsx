@@ -13,7 +13,9 @@ import {
 } from '../../../appContext/charts.data.providers';
 import {ChartTypes} from '../../../enums/ChartTypes';
 import {OtherContext} from '../../../appContext/other.context';
-import {IChartDescription} from '../../../appContext/Other.provider';
+import {IChartDescription, IChartsList} from '../../../data/charts.data';
+import {getCharts} from '../../../utils/other.utils';
+
 
 interface MatchParams {
     chartId: string;
@@ -69,8 +71,8 @@ export function ChartsDetails(props: IMatchProps) {
         </div>);
 }
 
-function getChartDetails(id: number, charts: IChartDescription[]): IChartDescription {
-    return charts.find( (chart:IChartDescription) => {
+function getChartDetails(id: number, charts: IChartsList): IChartDescription {
+    return getCharts(charts).find( (chart:IChartDescription) => {
         return (chart.iD === id);
     })
 }

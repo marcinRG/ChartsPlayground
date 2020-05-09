@@ -97,18 +97,29 @@
   text-align: right;
   border: 2px solid white;
   color: $text-color;
-  font-weight: bold;
-  font-style: italic;
-  text-decoration: none;
 
-  &:hover {
-    text-decoration: underline;
-  }
+  a {
+    cursor: pointer;
+    font-weight: lighter;
+    margin-right: 30px;
+    font-size: .85em;
+    color: $text-color;
+    text-decoration: none;
+    font-style: italic;
 
-  &::after {
-    @include font-awesome;
-    margin-left: 3px;
-    content: $fa-var-angle-double-right;
+    &:nth-last-of-type(1) {
+      margin-right: 5px;
+    }
+
+    &::after {
+      @include font-awesome;
+      margin-left: 3px;
+      content: $fa-var-angle-double-right;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
 }

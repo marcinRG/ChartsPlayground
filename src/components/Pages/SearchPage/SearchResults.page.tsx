@@ -25,7 +25,8 @@ export function SearchResultsPage(props: IMatchProps ) {
                     <div className="search-results">
                         <div className="selected-wrapper">
                             <h2 className="section-title">Search results</h2>
-                            <SearchResultsComponent setGoToSearchPage={context.actions.setGoToSearchPage} searchText={txt}/>
+                            <SearchResultsComponent setGoToSearchPage={context.actions.setGoToSearchPage} searchText={txt} getSearchResults={context.actions.getSearchResults}
+                            queryChangeAction={context.actions.changeSearchQuery} searchQuery={context.state.searchQuery}/>
                         </div>
                     </div>
                 </React.Fragment>

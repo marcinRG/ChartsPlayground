@@ -1,8 +1,9 @@
 import * as React from 'react';
 import './Swipe.component.scss';
 import {OtherContext} from '../../appContext/other.context';
-import {IChartDescription} from '../../appContext/Other.provider';
 import {SwiperPanelComponent} from './SwiperPanel.component';
+import {IChartDescription, IChartsList} from '../../data/charts.data';
+import {getCharts} from '../../utils/other.utils';
 
 
 export function SwiperComponent() {
@@ -28,8 +29,8 @@ export function SwiperComponent() {
     );
 }
 
-function getSelectedCharts(chartsList: IChartDescription[], selectedCharts: number[]): IChartDescription[] {
-    return chartsList.filter((element: IChartDescription) => {
+function getSelectedCharts(chartsList: IChartsList, selectedCharts: number[]): IChartDescription[] {
+    return getCharts(chartsList).filter((element: IChartDescription) => {
         return selectedCharts.includes(element.iD);
     });
 }

@@ -1,47 +1,11 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {OtherContext} from './other.context';
-// @ts-ignore
-import * as areaimg from '../../src/images/area-chart.png';
-// @ts-ignore
-import * as areabig from '../../src/images/area-chart-big.png';
-//-------------------------------------------
-// @ts-ignore
-import * as barimg from '../../src/images/bar-chart.png';
-// @ts-ignore
-import * as barbig from '../../src/images/bar-chart-big.png';
-//-------------------------------------------
-// @ts-ignore
-import * as pointsimg from '../../src/images/points-chart.png';
-// @ts-ignore
-import * as pointsBig from '../../src/images/point-chart-big.png';
-//----------------------------------------------
-// @ts-ignore
-import * as linepointimg from '../../src/images/line-point-chart.png';
-// @ts-ignore
-import * as linepointBig from '../../src/images/line-chart-big.png';
-
-//----------------------------------------------
-// @ts-ignore
-import * as pieimg from '../../src/images/pie-chart.png';
-// @ts-ignore
-import * as pieBig from '../../src/images/pie-chart-big.png';
-
-// @ts-ignore
-import * as imgComputer from '../../src/images/computer.png';
-
-
 import {ChartTypes} from '../enums/ChartTypes';
-import {HomePageSections} from '../enums/HomePageSections';
+import {charts, IChartDescription, IChartsList} from '../data/charts.data';
+import {homePageStaticContent, IHomePageContent, IPageSection} from '../data/staticContent.data';
+import {randomInt} from '../utils/other.utils';
 import {PageTitles} from '../enums/PageTitles';
-
-export interface IChartDescription {
-    iD: number;
-    name: string;
-    image: string;
-    imageBig: string;
-    description: string
-}
 
 export interface ISearchFormProperties {
     showTextInput: boolean;
@@ -49,115 +13,24 @@ export interface ISearchFormProperties {
     goToSearchPage: boolean;
 }
 
-
-interface ITitileDescription {
-    title: string;
-    description: string;
-}
-
-interface  IPageSection  extends ITitileDescription{
-    collection?: ITitileDescription[];
-    image?: {
-        title: string;
-        imagePath: string;
-    }
-}
-
-interface IHomePageContent {
-    [key:string]: IPageSection;
-}
-
-
 export interface IOtherProviderState {
     splashScreenVisible: boolean;
-    chartList: IChartDescription[];
+    chartList: IChartsList;
     selectedCharts: number[];
     currentSelectedChart: number;
     spotlightedChart: number;
     searchFormProperties: ISearchFormProperties;
     homePageContent: IHomePageContent;
+    searchQuery: string;
 }
 
-const charts: IChartDescription[] = [
-    {
-        iD: ChartTypes.BAR_CHART,
-        name: 'bar chart',
-        image: barimg,
-        imageBig: barbig,
-        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-    },
-    {
-        iD: ChartTypes.LINE_CHART,
-        name: 'line chart',
-        image: linepointimg,
-        imageBig: linepointBig,
-        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-    },
-    {
-        iD: ChartTypes.PIE_CHART,
-        name: 'pie chart',
-        image: pieimg,
-        imageBig: pieBig,
-        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-    },
-    {
-        iD: ChartTypes.POINT_CHART,
-        name: 'points chart',
-        image: pointsimg,
-        imageBig: pointsBig,
-        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-    },
-    {
-        iD: ChartTypes.AREA_CHART,
-        name: 'area chart',
-        image: areaimg,
-        imageBig: areabig,
-        description: 'lorem ipsum costam costam facere illum mollitia nemo odit perspiciatis porro, quos repudiandae',
-    }
-];
-
-// const homePageStaticContent: Map<string,IPageSection> = new Map();
-
-const homePageStaticContent: IHomePageContent = {
-    [HomePageSections.EXPLANATION_SECTION]: {
-        title: 'What\'s this?',
-        description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, aut
-                        commodi
-                        cum
-                        cupiditate dolor
-                        eius error eum expedita facere illum mollitia nemo odit perspiciatis porro, quos repudiandae
-                        velit veritatis vero?`,
-      image: {
-            imagePath: imgComputer,
-            title: 'someone browsing web on a tablet'
-      }
-    },
-    [HomePageSections.DESCRIPTION_SECTION]:{
-        title: 'How does it work?',
-        description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-                        consequuntur
-                        corporis doloribus dolorum eos,
-                        id incidunt ipsa iure necessitatibus nemo nesciunt nihil quae quod repellendus
-                        rerum sunt voluptas voluptatem voluptates!`,
-        collection: [
-            {
-                title: 'Lorem ipsum',
-                description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                             Alias consequuntur corporis doloribus dolorum eos`
-            },
-            {
-                title: 'Lorem ipsum',
-                description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                             Alias consequuntur corporis doloribus dolorum eos`
-            },
-            {
-                title: 'Lorem ipsum',
-                description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                             Alias consequuntur corporis doloribus dolorum eos`
-            },
-        ]
-    }
+export interface ISearchResult {
+    iD?: string;
+    key: string;
+    page: string[];
+    fullText: string;
 }
+
 
 export class OtherProvider extends Component<any, IOtherProviderState> {
     public state: IOtherProviderState;
@@ -167,7 +40,7 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
         this.state = {
             splashScreenVisible: false,
             chartList: charts,
-            spotlightedChart: randomInt(0, charts.length),
+            spotlightedChart: randomInt(0, Object.values(charts).length),
             selectedCharts: [ChartTypes.AREA_CHART, ChartTypes.PIE_CHART, ChartTypes.BAR_CHART],
             currentSelectedChart: 0,
             searchFormProperties: {
@@ -175,13 +48,16 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
                 searchText: '',
                 goToSearchPage: false
             },
-            homePageContent: homePageStaticContent
+            homePageContent: homePageStaticContent,
+            searchQuery: ''
         };
         this.changeSelectedChart = this.changeSelectedChart.bind(this);
         this.toggleSearchFormTextInput = this.toggleSearchFormTextInput.bind(this);
         this.changeSearchFormText = this.changeSearchFormText.bind(this);
         this.setGoToSearchPage = this.setGoToSearchPage.bind(this);
         this.toggleSplashScreenVisibility = this.toggleSplashScreenVisibility.bind(this);
+        this.getSearchResults = this.getSearchResults.bind(this);
+        this.changeSearchQuery = this.changeSearchQuery.bind(this);
     }
 
     toggleSplashScreenVisibility() {
@@ -189,6 +65,20 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
             splashScreenVisible: !this.state.splashScreenVisible
         });
     }
+
+    changeSearchQuery(text: string) {
+        this.setState({
+            searchQuery: text
+        });
+    }
+
+    getSearchResults(): ISearchResult[] {
+        let results: ISearchResult[] = [];
+        results = results.concat(findTextInChartsDescription(this.state.searchQuery, this.state.chartList));
+        results = results.concat(findTextInStaticContent(this.state.searchQuery, this.state.homePageContent));
+        return results;
+    }
+
 
     changeSelectedChart(value: number): void {
         let newValue: number;
@@ -236,7 +126,9 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
                         toggleSearchFormTextInput: this.toggleSearchFormTextInput,
                         changeSearchFormText: this.changeSearchFormText,
                         setGoToSearchPage: this.setGoToSearchPage,
-                        toggleSplashScreenVisibility: this.toggleSplashScreenVisibility
+                        toggleSplashScreenVisibility: this.toggleSplashScreenVisibility,
+                        getSearchResults: this.getSearchResults,
+                        changeSearchQuery: this.changeSearchQuery
                     }
                 }}>
                 {this.props.children}
@@ -260,16 +152,66 @@ function getPrevious(current: number, min: number, max: number): number {
     }
 }
 
-function randomInt(min: number, max: number) {
-    return min + Math.floor((max - min) * Math.random());
+function getMainPage(): string[] {
+    return [PageTitles.HOME_PAGE];
 }
 
-function findInCharts(text:string): any[] {
-    return [];
+function getPageFromChartsDetails(key: string): string[] {
+
+    switch (key) {
+        case 'name': {
+            return [PageTitles.HOME_PAGE, PageTitles.CHARTS_DETAILS_PAGE, PageTitles.CHARTS_PAGE];
+        }
+        case 'shortDescription' : {
+            return [PageTitles.HOME_PAGE];
+        }
+        case 'description' : {
+            return [PageTitles.CHARTS_DETAILS_PAGE];
+        }
+        default: {
+            return [];
+        }
+    }
 }
 
-function findInStaticContent(text: string, staticContent: any): any[] {
-    const pageName = PageTitles.HOME_PAGE;
-    let searchResults: any[] = [];
+function findTextInChartsDescription(text: string, charts: IChartsList): ISearchResult[] {
+    return findTextInCollection(text, charts, getPageFromChartsDetails);
+}
+
+function findTextInStaticContent(text: string, staticContent: any): ISearchResult[] {
+    return findTextInCollection(text, staticContent, getMainPage);
+}
+
+function findTextInCollection(text: string, staticContent: any, func: (txt: string) => string[]): ISearchResult[] {
+    let searchResults: ISearchResult[] = [];
+    Object.keys(staticContent).forEach((key) => {
+        let obj: IPageSection = staticContent[key];
+        let foundElements: ISearchResult[] = findInObject(text, obj, func).map((element: ISearchResult) => {
+            element.iD = obj.iD;
+            return element;
+        });
+        searchResults = searchResults.concat(foundElements);
+    });
     return searchResults;
+}
+
+function findInObject(text: string, obj: any, func: (txt: string) => string[]): ISearchResult[] {
+    let results: ISearchResult[] = [];
+    Object.keys(obj).forEach((key) => {
+        if (('string' === typeof (obj[key]))) {
+            if (obj[key].includes(text)) {
+                results.push(
+                    {
+                        key,
+                        page: func(key),
+                        fullText: obj[key]
+                    });
+            }
+        }
+        if ((('object' === typeof (obj[key])))) {
+            const newObj = obj[key];
+            results = results.concat(findInObject(text, newObj, func));
+        }
+    });
+    return results;
 }

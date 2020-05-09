@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Context} from 'react';
-import {IOtherProviderState} from './Other.provider';
+import {IOtherProviderState, ISearchResult} from './Other.provider';
 
 export interface IOtherContextState {
     state?: IOtherProviderState;
@@ -10,6 +10,8 @@ export interface IOtherContextState {
         changeSearchFormText?: (text: string) => void;
         setGoToSearchPage?: (b: boolean) => void;
         toggleSplashScreenVisibility?: () => void;
+        getSearchResults: () => ISearchResult[];
+        changeSearchQuery?: (text: string)=> void;
     };
 }
 
