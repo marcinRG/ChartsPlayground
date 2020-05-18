@@ -11,8 +11,7 @@ export function DescriptionSectionComponent() {
                     <div className="content-wrapper">
                         <div className="text-wrapper">
                             <h2 className="section-title">{context.state.homePageContent[HomePageSections.EXPLANATION_SECTION].title}</h2>
-                            <p className="section-text">{context.state.homePageContent[HomePageSections.EXPLANATION_SECTION].description}
-                            </p>
+                            <p className="section-text">{context.state.homePageContent[HomePageSections.EXPLANATION_SECTION].description}</p>
                         </div>
                         <img className="section-img" src={context.state.homePageContent[HomePageSections.EXPLANATION_SECTION].image.imagePath}
                              alt={context.state.homePageContent[HomePageSections.EXPLANATION_SECTION].image.title}/>

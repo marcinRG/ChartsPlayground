@@ -67,17 +67,16 @@ export function PageHeaderComponent(props: IPageHeaderProps) {
                              0   0   0   1   0"/>
                         </filter>
                     </defs>
-                    <image xlinkHref={img1} x="0" y="0" width="100%" height="100%"
-                           filter="url(#red-overlay)"/>
-                    <image xlinkHref={img1} x="0" y="0" width="100%" height="100%"
-                           clipPath="url(#svgTextPath)"/>
-                    <text className="svg-text" x="715" y="300" textLength="520px" lengthAdjust="spacing"
-                          fontSize="120px"
-                          filter="url(#txt-shadow)">Think</text>
-                    <text className="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing"
-                          fontSize="140px" filter="url(#txt-shadow)">outside</text>
-                    <text className="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing"
-                          fontSize="80px" filter="url(#txt-shadow)">of the box</text>
+                    {/*<image xlinkHref={img1} x="0" y="0" width="100%" height="100%"*/}
+                    {/*       filter="url(#red-overlay)"/>*/}
+                    {/*<image xlinkHref={img1} x="0" y="0" width="100%" height="100%"*/}
+                    {/*       clipPath="url(#svgTextPath)"/>*/}
+                    <text className="svg-text" x="42.6%" y="26.7%" textLength="14%" lengthAdjust="spacing"
+                          fontSize="12vh">Think</text>
+                    <text className="svg-text" x="40%" y="38%" textLength="20%" lengthAdjust="spacing"
+                          fontSize="19vh" >outside</text>
+                    <text className="svg-text" x="42%" y="46%" textLength="16%" lengthAdjust="spacing"
+                          fontSize="9vh" >of the box</text>
                 </svg>
                 <div className="header-content">
                     <nav className="app-navbar">

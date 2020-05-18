@@ -3,23 +3,96 @@
 
 .short-description {
   position: relative;
-  height: 550px;
-  padding: 5em;
-  background-color: $white;
-  //background-color: transparent;
+  padding: 10%;
+  background-color: $background-black;
   width: 100%;
 
+  @media screen {
+    @media (min-width: $media-br-1) {
+      background-color: $white;
+    }
+  }
+
+  @media screen {
+    @media (min-width: $media-br-3) {
+      padding: 5em;
+    }
+  }
+
+
   &::before {
-    content: '';
-    position: absolute;
-    transform: rotateZ(45deg);
-    top: -900px;
-    left: -200px;
-    z-index: 1;
-    display: block;
-    width: 2000px;
-    height: 1000px;
-    background-color: $background-black;
+
+    display: none;
+
+    @media screen {
+      @media (min-width: $media-br-1) {
+        content: '';
+        position: absolute;
+        transform: rotateZ(-25deg);
+        top: 500px;
+        right: -600px;
+        z-index: 1;
+        display: block;
+        width: 2000px;
+        height: 800px;
+        background-color: $background-black;
+      }
+    }
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        content: '';
+        position: absolute;
+        transform: rotateZ(45deg);
+        top: -900px;
+        left: -200px;
+        z-index: 1;
+        display: block;
+        width: 2000px;
+        height: 1000px;
+        background-color: $background-black;
+      }
+    }
+  }
+
+
+  .section-title {
+    text-align: center;
+    color: rgba(255, 255, 255, .8);
+
+    @media screen {
+      @media (min-width: $media-br-1) {
+        color: $text-color;
+      }
+    }
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        text-align: left;
+      }
+    }
+
+  }
+
+  .section-text {
+    color: $white;
+    text-align: justify;
+    margin-bottom: 2em;
+    width: 100%;
+
+    @media screen {
+      @media (min-width: $media-br-1) {
+        color: $text-color;
+      }
+    }
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        width: 65%;
+        margin: 2em auto 4em 0;
+      }
+    }
+
   }
 
   .content-wrapper {
@@ -31,13 +104,26 @@
 
     .text-wrapper {
       float: left;
-      width: 50%;
+      width: 100%;
       z-index: 1;
+
+      @media screen {
+        @media (min-width: $media-br-3) {
+          width: 50%;
+        }
+      }
     }
 
     .section-img {
       float: left;
+      width: 100%;
       z-index: 1;
+
+      @media screen {
+        @media (min-width: $media-br-3) {
+          width: 40%;
+        }
+      }
     }
 
     &::after {

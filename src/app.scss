@@ -26,15 +26,16 @@ body {
 .section-title {
   @include font-peace-sans;
   color: $text-color;
-  font-size: 3em;
+  font-size: 1.5em;
   margin-bottom: .5em;
-}
 
-.section-text {
-  color: $text-color;
-  text-align: justify;
-  margin-bottom: 1.2em;
-  width: 50%;
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      font-size: 3em;
+    }
+  }
+
 }
 
 .app-button {
@@ -43,10 +44,18 @@ body {
   background-color: $background-red;
   color: white;
   font-weight: bold;
-  font-size: 1.25em;
-  padding: .85em 3em;
-  border-radius: 1.5em;
+  font-size: .95em;
+  padding: .85em 1.5em;
+  border-radius: 1em;
   text-transform: uppercase;
+
+  @media screen {
+    @media (min-width: $media-br-4) {
+      font-size: 1.25em;
+      padding: .85em 3em;
+      border-radius: 1.5em;
+    }
+  }
 }
 
 .defs {
