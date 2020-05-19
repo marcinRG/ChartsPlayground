@@ -4,13 +4,19 @@
 .swiper {
   @include block-border-box;
   width: 100%;
-  padding: 80px 0;
+  height: 790px;
+
+  @media screen {
+    @media (min-width: $media-br-3) {
+      height: 470px;
+    }
+  }
 }
 
 .swiper-content {
   position: relative;
   width: 85%;
-  min-height: 218px;
+  height: 100%;
   margin: 0 auto;
 }
 
@@ -27,12 +33,24 @@
     background-image: url('../../images/small-triangle-left.svg');
     left: 15%;
     transform: scale(.5) translateX(-100px);
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        transform: scale(1) translateX(-50px);
+      }
+    }
   }
 
   &.right {
     background-image: url('../../images/small-triangle-right.svg');
     left: 85%;
     transform: scale(.5);
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        transform: scale(1);
+      }
+    }
   }
 
 }

@@ -17,29 +17,20 @@
   }
 
   .content-wrapper {
+    width: 80%;
+    top: 10%;
+    left: 10%;
+    color: white;
+    position: absolute;
 
     @media screen {
-      @media (max-width: $media-br-1) {
-        width: 80%;
-        top: 10%;
-        left: 10%;
-      }
 
-      @media (max-width: $media-br-2) {
-        width: 80%;
-        top: 10%;
-        left: 10%;
+      @media (min-width: $media-br-3) {
+        left: 25%;
+        width: 50%;
       }
-
     }
-
-    color: white;
-    top: 10%;
-    left: 25%;
-    width: 50%;
-    position: absolute;
   }
-
 
   &::before {
     z-index: 0;
@@ -57,44 +48,39 @@
   }
 
   &::after {
-
+    display: none;
     @media screen {
-
-      @media (max-width: $media-br-2) {
-        display: none;
+      @media (min-width: $media-br-2) {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        display: block;
+        background-color: $background-red;
+        content: '';
+        z-index: 1;
+        right: 50px;
+        bottom: -150px;
+        transform: rotateZ(45deg);
       }
     }
-
-
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    display: block;
-    background-color: $background-red;
-    content: '';
-    z-index: 1;
-    right: 50px;
-    bottom: -150px;
-    transform: rotateZ(45deg);
   }
 }
 
 .contact-container {
 
   @media screen {
+    height: 260px;
+    padding: 10px 0;
+    overflow: hidden;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
 
-    @media (max-width: $media-br-1) {
-      height: 260px;
-      padding: 10px 0;
+    @media (min-width: $media-br-1) {
+      height: 200px;
+      padding: 40px 0;
     }
   }
-
-  overflow: hidden;
-  display: block;
-  box-sizing: border-box;
-  height: 200px;
-  width: 100%;
-  padding: 40px 0;
 
   &::after {
     clear: both;
@@ -104,71 +90,57 @@
 
 .contact {
 
+  padding: 0;
+  width: 100%;
+  font-size: .75em;
+  height: 75px;
+  display: block;
+  float: left;
+  position: relative;
+
   @media screen {
 
-    @media (max-width: $media-br-1) {
-      padding: 0;
-      width: 100%;
-      font-size: .75em;
-      height: 75px;
-    }
-    @media (max-width: $media-br-3) and (min-width: $media-br-1) {
+    @media (min-width: $media-br-1) {
       padding: 20px 5px;
       width: 33%;
       font-size: .75em;
       height: 120px;
     }
+
+    @media (min-width: $media-br-4)  {
+      font-size: .95em;
+    }
+
   }
 
-  width: 33%;
-  display: block;
-  padding-left: 65px;
-  padding-top: 15px;
-  height: 120px;
-  float: left;
-  font-size: .95em;
-  position: relative;
-
   h3 {
-    @media (max-width: $media-br-3) and (min-width: $media-br-1) {
-      padding-left: 50px;
+    padding: 0;
+
+    @media screen {
+      @media (min-width: $media-br-1) {
+          padding-left: 50px;
+      }
     }
   }
 
   p {
-
-    @media screen {
-
-      @media (max-width: $media-br-1) {
-        padding: 10px 0 10px 60px;
-        width: 100%;
-      }
-
-      @media (max-width: $media-br-3) and (min-width: $media-br-1) {
-        padding: 10px 0 10px 50px;
-        margin: 0;
-        width: 100%;
-      }
-    }
-
-    padding: 10px 0;
-    width: 70%;
+    padding: 10px 0 10px 50px;
+    width: 100%;
   }
 
 
   &::before {
     @include font-awesome;
-    font-size: 40px;
+    font-size: 30px;
     position: absolute;
     width: 50px;
     text-align: center;
     left: 0;
     top: 20px;
 
-    @media (max-width: $media-br-3) and (min-width: $media-br-1) {
-      font-size: 30px;
+    @media (min-width: $media-br-4) {
+      font-size: 40px;
     }
-
   }
 
   &.email {
@@ -195,36 +167,37 @@
 
 .social-links {
 
-  @media screen {
-
-    @media (max-width: $media-br-3) {
-      width: 85%;
-    }
-  }
-
   width: 60%;
   text-align: center;
   border-bottom: 1px solid $white;
   padding: .5em .35em 20px;
   margin: 0 auto;
+
+  @media screen {
+
+    @media (min-width: $media-br-3) {
+      width: 85%;
+    }
+  }
 }
 
 
 .link-social {
 
+  text-decoration: none;
+  font-size: 1em;
+  margin: 0 .5em;
+
+  color: $white;
+  display: inline-block;
+
   @media screen {
-    @media (max-width: $media-br-3) {
-      font-size: 1em;
-      margin: 0 .5em;
+    @media (min-width: $media-br-3) {
+      margin: 0 1em;
+      font-size: 1.5em;
     }
   }
 
-
-  text-decoration: none;
-  margin: 0 1em;
-  font-size: 1.5em;
-  color: $white;
-  display: inline-block;
 
   &::before {
     @include font-awesome;

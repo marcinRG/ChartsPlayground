@@ -30,7 +30,7 @@ export class HomePage extends  Component<IHomePageProps, any> {
                 <ChartsListComponent/>
                 <ExplanationSectionComponent/>
                 <SelectedChartsComponent/>
-                {/*<InTheSpotlightComponent/>*/}
+                <InTheSpotlightComponent/>
             </React.Fragment>);
     }
 }
