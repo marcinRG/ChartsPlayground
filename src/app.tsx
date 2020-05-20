@@ -12,6 +12,7 @@ import {ChartsDetails} from './components/Pages/ChartDetails/ChartDetails.page';
 import {SearchResultsPage} from './components/Pages/SearchPage/SearchResults.page';
 import {OtherContext} from './appContext/other.context';
 import {PageTitles} from './enums/PageTitles';
+import {ErrorPage} from './components/Pages/ErrorPage/Error.page';
 
 ReactDOM.render(
     <OtherProvider>
@@ -31,6 +32,9 @@ ReactDOM.render(
                             </Route>
                             <Route exact path={'/' + PageTitles.HOME_PAGE}>
                                 <HomePage toggleSplashScreenVisibility={context.actions.toggleSplashScreenVisibility}/>
+                            </Route>
+                            <Route>
+                                <ErrorPage/>
                             </Route>
                         </Switch>
                     </React.Fragment>

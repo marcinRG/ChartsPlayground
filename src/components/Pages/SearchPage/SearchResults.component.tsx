@@ -72,11 +72,11 @@ function createFoundTextElement(txt: string, found: string) {
 
 function createLinks(links: string[]) {
     return (
-      <div className="found-link">
-          {links.map((link:string,index: number) =>
-              <Link to={'/' + link} key={index}>go to {'/' + link}</Link>
-          )}
-      </div>
+        <div className="found-link">
+            {links.map((link: string, index: number) =>
+                <Link to={'/' + link} key={index}>go to {'/' + link}</Link>
+            )}
+        </div>
     );
 }
 
@@ -91,7 +91,7 @@ function wrapText(fullText: string, str: string) {
                 j++;
                 splitResults.push(<span key={j}>{str}</span>);
             }
-            splitResults.push(txtArray[txtArray.length-1]);
+            splitResults.push(txtArray[txtArray.length - 1]);
             return splitResults;
         } else {
             splitResults = [fullText];

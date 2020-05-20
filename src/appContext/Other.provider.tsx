@@ -74,8 +74,10 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
 
     getSearchResults(): ISearchResult[] {
         let results: ISearchResult[] = [];
-        results = results.concat(findTextInChartsDescription(this.state.searchQuery, this.state.chartList));
-        results = results.concat(findTextInStaticContent(this.state.searchQuery, this.state.homePageContent));
+        if (this.state.searchQuery !== '' && this.state.searchQuery !== ' ') {
+            results = results.concat(findTextInChartsDescription(this.state.searchQuery, this.state.chartList));
+            results = results.concat(findTextInStaticContent(this.state.searchQuery, this.state.homePageContent));
+        }
         return results;
     }
 

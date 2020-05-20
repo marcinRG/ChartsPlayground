@@ -2,12 +2,19 @@
 @import './../../scss/mixins';
 
 .data-table-component {
-  width: 400px;
+  width: 100%;
   height: 550px;
   padding: .5em;
   background-color: $white;
-  border-right: 1px $background-black solid;
   float: left;
+
+  @media screen {
+    @media (min-width: $media-br-2) {
+      width: 40%;
+    }
+  }
+
+
 
   label {
     font-size: .75em;
@@ -18,11 +25,19 @@
   .data-table-wrapper {
     width: 100%;
     height: 350px;
-    overflow-x: auto;
-    overflow-y: auto;
+    overflow-x: scroll;
+    overflow-y: scroll;
     border: 1px $background-black solid;
     margin-bottom: .5em;
     padding: .25em;
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        overflow-y: auto;
+        overflow-x: auto;
+      }
+    }
+
   }
 
   .data-table {
@@ -45,11 +60,19 @@
   button {
     margin-top: 1em;
     border-radius: 3px;
-    padding: .5em 3em;
+    padding: .5em 1em;
     margin-right: .25em;
     font-weight: bold;
     background-color: $background-red;
     color: $white;
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        padding: .5em 3em;
+      }
+    }
+
+
   }
 
 }

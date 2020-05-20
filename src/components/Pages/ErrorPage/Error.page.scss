@@ -1,8 +1,7 @@
 @import './../../../scss/variables';
 @import './../../../scss/mixins';
 
-.charts-page {
-
+.error-page {
   .selected-wrapper {
     width: 100%;
     padding: 10%;
@@ -14,23 +13,15 @@
     }
   }
 
-  .chart-subtitle {
-    @include font-peace-sans;
-    color: $text-color;
-    font-size: 1.2em;
-    text-align: center;
-    margin: 2em 0 1em;
-
-    @media screen {
-      @media (min-width: $media-br-2) {
-        font-size: 2em;
-      }
-    }
-
-
-  }
-
   .section-title {
     text-align: center;
+  }
+
+  .message {
+    text-align: center;
+
+    a {
+      color: $text-color;
+    }
   }
 }

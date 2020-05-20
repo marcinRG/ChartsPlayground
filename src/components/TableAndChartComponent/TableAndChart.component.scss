@@ -3,9 +3,16 @@
 
 .table-chart-component {
   overflow: hidden;
-  width: 1002px;
+  width: 100%;
   border: 1px $background-black solid;
   margin: 1em auto;
+
+  @media screen {
+    @media (min-width: $media-br-3) {
+      width: 1002px;
+    }
+  }
+
 
   &::after {
     clear: both;

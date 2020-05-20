@@ -3,7 +3,14 @@
 
 .details-page {
   .selected-wrapper {
-    padding: 2em 5em 4em;
+    width: 100%;
+    padding: 10%;
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        padding: 2em 5em 4em;
+      }
+    }
   }
 
   .section-title {
@@ -12,36 +19,68 @@
 
   .small-title {
     @include block-border-box;
-    width: 1000px;
+    width: 100%;
     margin: 2em auto;
-    height: 75px;
+    height: 40px;
     overflow: hidden;
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        height: 75px;
+        text-align: center;
+      }
+    }
+
 
     h3 {
       @include font-peace-sans;
       color: $text-color;
-      font-size: 2em;
+      font-size: 1em;
       display: inline-block;
       vertical-align: top;
       margin-left: 15px;
-      line-height: 75px;
+      line-height: 40px;
+
+      @media screen {
+        @media (min-width: $media-br-2) {
+          font-size: 2em;
+          line-height: 75px;
+          height: 75px;
+        }
+      }
     }
 
     img {
       display: inline-block;
-    }
+      height: 40px;
 
+      @media screen {
+        @media (min-width: $media-br-2) {
+          height: 75px;
+        }
+      }
+    }
   }
 
   .chart-details-info {
     @include font-open-sans;
     @include block-border-box;
     font-size: 16px;
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
     padding: 4em 0 100px;
     font-style: italic;
     position: relative;
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        width: 60%;
+      }
+
+      @media (min-width: $media-br-3) {
+        width: 40%;
+      }
+    }
 
     &::after {
       content: '';
@@ -53,7 +92,5 @@
       height: 50px;
       width: 150px;
     }
-
   }
-
 }

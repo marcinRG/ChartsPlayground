@@ -2,12 +2,19 @@
 @import './../../../scss/mixins';
 
 .chart-component {
-  width: 600px;
-  height: 550px;
+  width: 100%;
   padding: .5em;
   background-color: $background-whitesmoke;
   float: right;
   text-align: center;
+
+  @media screen {
+    @media (min-width: $media-br-2) {
+      width: 60%;
+      //height: 550px;
+    }
+  }
+
 
   .chart-title {
     width: 100%;
@@ -20,6 +27,8 @@
   .chart-svg {
     background-color: whitesmoke;
     border: 1px solid black;
+    width: 100%;
+    height: auto;
   }
 
   .grid {

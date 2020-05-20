@@ -4,7 +4,14 @@
 .search-results {
 
   .selected-wrapper {
-    padding: 2em 5em 4em;
+    width: 100%;
+    padding: 10%;
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        padding: 2em 5em 4em;
+      }
+    }
   }
 
   .section-title {
@@ -13,8 +20,14 @@
 }
 
 .search-results-component {
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
+
+  @media screen {
+    @media (min-width: $media-br-3) {
+      width: 50%;
+    }
+  }
 
   hr {
     width: 100%;
@@ -103,9 +116,19 @@
     font-weight: lighter;
     margin-right: 30px;
     font-size: .85em;
+    display: inline-block;
+    width: 100%;
     color: $text-color;
     text-decoration: none;
     font-style: italic;
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        width: auto;
+        display: inline;
+      }
+    }
+
 
     &:nth-last-of-type(1) {
       margin-right: 5px;

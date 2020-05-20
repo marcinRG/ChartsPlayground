@@ -4,19 +4,32 @@
 .info-page {
 
   .selected-wrapper {
-    padding: 2em 5em 4em;
+    width: 100%;
+    padding: 10%;
+
+    @media screen {
+      @media (min-width: $media-br-3) {
+        padding: 2em 5em 4em;
+      }
+    }
   }
 
   .content {
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
   }
 
   .sub-title {
     @include font-peace-sans;
     color: $text-color;
-    font-size: 2em;
+    font-size: 1em;
     margin: 1em 0;
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        font-size: 2em;
+      }
+    }
   }
 
   .item-list {
@@ -33,10 +46,16 @@
     a {
       color: $text-color;
     }
-
   }
 
   .section-title {
     text-align: center;
+    font-size: 1em;
+
+    @media screen {
+      @media (min-width: $media-br-2) {
+        font-size: 2em;
+      }
+    }
   }
 }
