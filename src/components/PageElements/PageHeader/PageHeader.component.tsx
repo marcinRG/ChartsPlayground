@@ -18,6 +18,11 @@ interface IPageHeaderProps {
 }
 
 export function PageHeaderComponent(props: IPageHeaderProps) {
+
+    const func = ()=> {
+        props.changeMenuVisibility();
+    }
+
     return (
         <React.Fragment>
             <header className={getHeaderClass(props.showSplashScreen)}>
@@ -39,12 +44,13 @@ export function PageHeaderComponent(props: IPageHeaderProps) {
                         </filter>
 
                         <clipPath id="svgTextPath">
-                            <text className="svg-text" x="715" y="300" textLength="520px" lengthAdjust="spacing"
-                                  fontSize="120px">Think</text>
-                            <text className="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing"
-                                  fontSize="140px">outside</text>
-                            <text className="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing"
-                                  fontSize="80px">of the box</text>
+                            <text x="0" y="0" className="svg-text first">Think</text>
+                            <text x="0" y="0" className="svg-text second">outside</text>
+                            <text x="0" y="0" className="svg-text third">of the box</text>
+                            {/*<text className="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing"*/}
+                            {/*      fontSize="140px">outside</text>*/}
+                            {/*<text className="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing"*/}
+                            {/*      fontSize="80px">of the box</text>*/}
                         </clipPath>
 
                         <filter id="txt-shadow">
@@ -67,30 +73,27 @@ export function PageHeaderComponent(props: IPageHeaderProps) {
                              0   0   0   1   0"/>
                         </filter>
                     </defs>
-                    {/*<image xlinkHref={img1} x="0" y="0" width="100%" height="100%"*/}
-                    {/*       filter="url(#red-overlay)"/>*/}
-                    {/*<image xlinkHref={img1} x="0" y="0" width="100%" height="100%"*/}
-                    {/*       clipPath="url(#svgTextPath)"/>*/}
-                    <text className="svg-text" x="42.6%" y="26.7%" textLength="14%" lengthAdjust="spacing"
-                          fontSize="12vh">Think</text>
-                    <text className="svg-text" x="40%" y="38%" textLength="20%" lengthAdjust="spacing"
-                          fontSize="19vh" >outside</text>
-                    <text className="svg-text" x="42%" y="46%" textLength="16%" lengthAdjust="spacing"
-                          fontSize="9vh" >of the box</text>
+                    <image xlinkHref={img1} x="0" y="0" width="100%" height="100%"
+                           filter="url(#red-overlay)"/>
+                    <image xlinkHref={img1} x="0" y="0" width="100%" height="100%"
+                           clipPath="url(#svgTextPath)"/>
+                    <text x="0" y="0" className="svg-text first txt-shadow">Think</text>
+                    <text x="0" y="0" className="svg-text second txt-shadow">outside</text>
+                    <text x="0" y="0" className="svg-text third txt-shadow">of the box</text>
                 </svg>
                 <div className="header-content">
                     <nav className="app-navbar">
                         <h1 className="app-title">Charts playground</h1>
-                        <button className="menu-button"></button>
-                        <ul className="app-menu">
-                            <li className="menu-item"><Link to={'/' +PageTitles.HOME_PAGE }>home</Link></li>
-                            <li className="menu-item"><Link to={'/' + PageTitles.CHARTS_PAGE}>charts</Link></li>
-                            <li className="menu-item"><Link to={'/' + PageTitles.INFO_PAGE}>info</Link></li>
+                        <button className="menu-button" onClick={func}></button>
+                        <ul className={getMenuClass(props.showMenu)}>
+                            <li className="menu-item" onClick={func}><Link to={'/' +PageTitles.HOME_PAGE }>home</Link></li>
+                            <li className="menu-item" onClick={func}><Link to={'/' + PageTitles.CHARTS_PAGE}>charts</Link></li>
+                            <li className="menu-item" onClick={func}><Link to={'/' + PageTitles.INFO_PAGE}>info</Link></li>
                             <li className="menu-item"><SearchFormComponent/></li>
                         </ul>
                     </nav>
                 </div>
-                <img className="image-overlay" src={img2} alt="smiling blond woman"/>
+                <img className={getImgOverlayClass(props.showSplashScreen)} src={img2} alt="smiling blond woman"/>
             </header>
         </React.Fragment>
     );
@@ -108,4 +111,6 @@ function getSplashScreenClass(show: boolean): string {
     return getElementClass(show, 'img-background', 'visible');
 }
 
-
+function getImgOverlayClass(show: boolean): string {
+    return getElementClass(show, 'image-overlay', 'visible');
+}

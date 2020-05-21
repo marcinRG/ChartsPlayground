@@ -10,6 +10,7 @@ export interface IOtherContextState {
         changeSearchFormText?: (text: string) => void;
         setGoToSearchPage?: (b: boolean) => void;
         toggleSplashScreenVisibility?: () => void;
+        toggleMainMenuVisibility?: ()=> void;
         getSearchResults: () => ISearchResult[];
         changeSearchQuery?: (text: string)=> void;
     };

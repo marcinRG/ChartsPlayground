@@ -15,6 +15,7 @@ export interface ISearchFormProperties {
 
 export interface IOtherProviderState {
     splashScreenVisible: boolean;
+    mainMenuVisible: boolean;
     chartList: IChartsList;
     selectedCharts: number[];
     currentSelectedChart: number;
@@ -39,6 +40,7 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
         super(props);
         this.state = {
             splashScreenVisible: false,
+            mainMenuVisible: false,
             chartList: charts,
             spotlightedChart: randomInt(0, Object.values(charts).length),
             selectedCharts: [ChartTypes.AREA_CHART, ChartTypes.PIE_CHART, ChartTypes.BAR_CHART],
@@ -58,6 +60,13 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
         this.toggleSplashScreenVisibility = this.toggleSplashScreenVisibility.bind(this);
         this.getSearchResults = this.getSearchResults.bind(this);
         this.changeSearchQuery = this.changeSearchQuery.bind(this);
+        this.toggleMainMenuVisibility = this.toggleMainMenuVisibility.bind(this);
+    }
+
+    toggleMainMenuVisibility() {
+        this.setState({
+            mainMenuVisible: !this.state.mainMenuVisible
+        });
     }
 
     toggleSplashScreenVisibility() {
@@ -130,7 +139,8 @@ export class OtherProvider extends Component<any, IOtherProviderState> {
                         setGoToSearchPage: this.setGoToSearchPage,
                         toggleSplashScreenVisibility: this.toggleSplashScreenVisibility,
                         getSearchResults: this.getSearchResults,
-                        changeSearchQuery: this.changeSearchQuery
+                        changeSearchQuery: this.changeSearchQuery,
+                        toggleMainMenuVisibility: this.toggleMainMenuVisibility
                     }
                 }}>
                 {this.props.children}

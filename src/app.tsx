@@ -20,7 +20,9 @@ ReactDOM.render(
             <OtherContext.Consumer>
                 {context =>
                     <React.Fragment>
-                        <PageHeaderComponent showSplashScreen={context.state.splashScreenVisible}/>
+                        <PageHeaderComponent showSplashScreen={context.state.splashScreenVisible}
+                                             changeMenuVisibility={context.actions.toggleMainMenuVisibility}
+                                             showMenu={context.state.mainMenuVisible}/>
                         <Switch>
                             <Route path={'/'+ PageTitles.CHARTS_DETAILS_PAGE + '/:chartId'} component={ChartsDetails}/>
                             <Route path={'/' + PageTitles.SEARCH_PAGE +'/:searchText?'} component={SearchResultsPage}/>

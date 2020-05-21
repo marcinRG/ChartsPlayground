@@ -2,6 +2,7 @@
 @import './../../scss/mixins';
 
 .search-title {
+
   &::before {
     @include font-awesome;
     display: inline-block;
@@ -24,9 +25,7 @@
   &.visible {
     border-radius: 9px;
     margin-right: 5px;
-    width: 190px;
+    width: 180px;
     padding: 0 10px;
   }
-
 }
-
