@@ -1,17 +1,18 @@
 import * as React from 'react';
 import {Component} from 'react';
+import {IChartData} from './charts.data.providers';
+import {IDataContextState} from './data.context';
+import {Context} from 'react';
 
-interface IState {
-    title: string;
-    values: Array<Array<any>>;
-    selectedRow?: number;
-    selectedColumn?: number;
+export interface IWidthHeight {
+    width: number;
+    height: number;
 }
 
-export function DataProviderHOC(DataContext: any, initData: IState): any {
+export function DataProviderHOC(DataContext: Context<IDataContextState>, initData: IChartData): any {
     return (
-        class DataProvider extends Component<any, IState> {
-            public state: IState;
+        class DataProvider extends Component<IDataContextState, IChartData> {
+            public state: IChartData;
 
             constructor(props: any) {
                 super(props);
@@ -55,7 +56,7 @@ export function DataProviderHOC(DataContext: any, initData: IState): any {
                 });
             }
 
-            private getTableSize() {
+            private getTableSize(): IWidthHeight {
                 return getTableSize(this.state.values);
             }
 
@@ -89,7 +90,7 @@ function dataIsArray(data: any) {
     return (Array.isArray(data) && data.length > 0 && Array.isArray(data[0]));
 }
 
-function getTableSize(array: Array<Array<any>>): { width: number, height: number } {
+function getTableSize(array: Array<Array<any>>): IWidthHeight {
     let height = 0;
     let width = 0;
 

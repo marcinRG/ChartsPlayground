@@ -10,7 +10,7 @@ export function TableAndPieChartComponent() {
         <DataContext.Consumer>
             {context => <React.Fragment>
                 <TableAndChartComponent>
-                    <TableComponent title={context.state.title} values={context.state.values}
+                    <TableComponent state={context.state}
                                     actions={context.actions}/>
                     <PieChartComponent title={context.state.title} values={context.state.values}
                                         chartProperties={context.state.chartProperties}/>

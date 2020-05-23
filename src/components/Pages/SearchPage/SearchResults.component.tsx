@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component, RefObject} from 'react';
+import {Component, FormEvent, RefObject} from 'react';
 import {getUnsafeString} from '../../../utils/other.utils';
 import {ISearchResult} from '../../../appContext/Other.provider';
 import {Link} from 'react-router-dom';
@@ -18,6 +18,7 @@ export class SearchResultsComponent extends Component<ISearchResultsProps, any> 
     constructor(props: ISearchResultsProps) {
         super(props);
         this.inputRef = React.createRef<HTMLInputElement>();
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -33,11 +34,15 @@ export class SearchResultsComponent extends Component<ISearchResultsProps, any> 
         }
     }
 
+    onSubmit(event: FormEvent) {
+        event.preventDefault();
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div className="search-results-component">
-                    <form className="search-form">
+                    <form className="search-form" onSubmit={this.onSubmit}>
                         <input type="text" className="search-text" ref={this.inputRef}
                                defaultValue={this.props.searchText}/>
                         <button className="search-btn" onClick={() => {
@@ -52,7 +57,7 @@ export class SearchResultsComponent extends Component<ISearchResultsProps, any> 
                         {this.props.getSearchResults().map((elem: ISearchResult, index: number) =>
                             <div className="found-element" key={index}>
                                 {createFoundTextElement(elem.fullText, this.props.searchQuery)}
-                                {createLinks(elem.page)}
+                                {createLinks(elem.page, elem.iD)}
                             </div>
                         )}
                     </div>}
@@ -70,14 +75,26 @@ function createFoundTextElement(txt: string, found: string) {
     );
 }
 
-function createLinks(links: string[]) {
+function createLinks(links: string[], iD: any) {
     return (
         <div className="found-link">
-            {links.map((link: string, index: number) =>
-                <Link to={'/' + link} key={index}>go to {'/' + link}</Link>
-            )}
+            {createLinksTable(links, iD)}
         </div>
     );
+}
+
+function createLinksTable(links: string[], iD: any): any[] {
+    let tableOfLinks: any[] = [];
+    links.forEach((link, index) => {
+        let linkTag: any;
+        if (Number.isInteger(iD) && (link !=='')) {
+            linkTag = <Link to={'/' + link + '/' + iD} key={index}>go to {'/' + link + '/' + iD}</Link>
+        } else {
+            linkTag = <Link to={'/' + link} key={index}>go to {'/' + link}</Link>
+        }
+        tableOfLinks.push(linkTag);
+    });
+    return tableOfLinks;
 }
 
 function wrapText(fullText: string, str: string) {

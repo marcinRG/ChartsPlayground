@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Component} from 'react';
-import {createPointsChart} from '../../../utils/3d.utils';
+import {createAreaChart, createChart, createPointsChart} from '../../../utils/3d.utils';
 import {transformInputData} from '../../../utils/data.utils';
 
 export class PointsChartComponent extends Component<any, any> {
@@ -12,13 +12,13 @@ export class PointsChartComponent extends Component<any, any> {
     }
 
     componentDidMount(): void {
-        this.svgRef.current = createPointsChart(this.svgRef.current,
-            transformInputData(this.props.values).data, this.props.chartProperties);
+        this.svgRef.current = createChart(this.svgRef.current,
+            transformInputData(this.props.values), this.props.chartProperties,createPointsChart);
     }
 
     render() {
-        this.svgRef.current = createPointsChart(this.svgRef.current,
-            transformInputData(this.props.values).data, this.props.chartProperties);
+        this.svgRef.current = createChart(this.svgRef.current,
+            transformInputData(this.props.values), this.props.chartProperties,createPointsChart);
         return (
             <div className="chart-component">
                 <label className="chart-title">Chart title</label>

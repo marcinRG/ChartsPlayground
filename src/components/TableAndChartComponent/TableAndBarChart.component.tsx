@@ -9,8 +9,8 @@ export function TableAndBarChartComponent() {
         <DataContext.Consumer>
             {context => <React.Fragment>
                 <TableAndChartComponent>
-                    <TableComponent title={context.state.title} values={context.state.values}
-                                     actions={context.actions}/>
+                    <TableComponent state={context.state}
+                                    actions={context.actions}/>
                     <BarChartComponent title={context.state.title} values={context.state.values}
                                         chartProperties={context.state.chartProperties}/>
                 </TableAndChartComponent>

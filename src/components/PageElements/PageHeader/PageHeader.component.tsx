@@ -47,10 +47,6 @@ export function PageHeaderComponent(props: IPageHeaderProps) {
                             <text x="0" y="0" className="svg-text first">Think</text>
                             <text x="0" y="0" className="svg-text second">outside</text>
                             <text x="0" y="0" className="svg-text third">of the box</text>
-                            {/*<text className="svg-text" x="600" y="420" textLength="750px" lengthAdjust="spacing"*/}
-                            {/*      fontSize="140px">outside</text>*/}
-                            {/*<text className="svg-text" x="660" y="500" textLength="630px" lengthAdjust="spacing"*/}
-                            {/*      fontSize="80px">of the box</text>*/}
                         </clipPath>
 
                         <filter id="txt-shadow">

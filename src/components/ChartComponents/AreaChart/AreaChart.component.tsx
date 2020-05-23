@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 
-import {createAreaChart} from '../../../utils/3d.utils';
+import {createAreaChart, createChart, createLineChart} from '../../../utils/3d.utils';
 import {transformInputData} from '../../../utils/data.utils';
 
 
@@ -14,13 +14,13 @@ export class AreaChartComponent extends Component<any,any> {
     }
 
     componentDidMount(): void {
-        this.svgRef.current = createAreaChart(this.svgRef.current,
-            transformInputData(this.props.values).data, this.props.chartProperties);
+        this.svgRef.current = createChart(this.svgRef.current,
+            transformInputData(this.props.values), this.props.chartProperties,createAreaChart);
     }
 
     render() {
-        this.svgRef.current = createAreaChart(this.svgRef.current,
-            transformInputData(this.props.values).data, this.props.chartProperties);
+        this.svgRef.current = createChart(this.svgRef.current,
+            transformInputData(this.props.values), this.props.chartProperties,createAreaChart);
         return (
             <div className="chart-component">
                 <label className="chart-title">{this.props.title}</label>

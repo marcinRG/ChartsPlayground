@@ -29,6 +29,19 @@
     border: 1px solid black;
     width: 100%;
     height: auto;
+
+    .svg-text-warning {
+      @include font-open-sans;
+      fill: red;
+      font-size: 14px;
+    }
+
+    .svg-text-warning-msg {
+      @include font-open-sans;
+      font-size: 14px;
+    }
+
+
   }
 
   .grid {

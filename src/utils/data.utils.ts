@@ -1,15 +1,27 @@
 import {getTableWidth} from '../appContext/Data.provider.hoc';
 
-export function transformInputData(array: any[]): any {
+export const enum dataStatus {
+    OK='OK',
+    ERROR = 'Error'
+}
+
+export interface IStatusData {
+    status: string;
+    data?: Array<Array<any>>;
+    errorMsg?: string
+}
+
+export function transformInputData(array: any[]): IStatusData {
     if (isDataValid(array)) {
         return {
-            status: 'OK',
+            status: dataStatus.OK,
             data: getData(array, ['x', 'y'])
         };
     }
     return {
-        status: 'Error',
-        data: []
+        status: dataStatus.ERROR,
+        data: [],
+        errorMsg: 'Error occurred. Data table should not contain any blank fields'
     };
 }
 

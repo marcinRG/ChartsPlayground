@@ -4,8 +4,9 @@ import * as React from 'react';
 import {Component} from 'react';
 import {CellComponent} from './Cell.component';
 import {TableHeaderComponent} from './TableHeader.component';
+import {IDataContextState} from '../../appContext/data.context';
 
-export class TableComponent extends Component<any, any> {
+export class TableComponent extends Component<IDataContextState, any> {
     private readonly tableRef: any;
     private readonly inputRef: any;
 
@@ -38,7 +39,7 @@ export class TableComponent extends Component<any, any> {
         let cells: any[] = [];
         cells.push(<TableHeaderComponent action={this.clickHeader} key={row} value={'R' + '' + (row + 1)}/>);
         for (let i = 0; i < maxWidth; i++) {
-            const value = this.props.values[row][i] || '';
+            const value = this.props.state.values[row][i] || '';
             cells.push(<CellComponent key={'R' + row + 'C' + i} value={value}
                                       row={row} column={i} action={this.props.actions.changeTableCellValue}/>);
         }
@@ -78,13 +79,13 @@ export class TableComponent extends Component<any, any> {
     render(): any {
         return (<div className="data-table-component">
             <label>Dataset title:</label>
-            <input type="text"  ref={this.inputRef}  className="table-title" value={this.props.title} onChange={this.changeTitle} />
+            <input type="text"  ref={this.inputRef}  className="table-title" value={this.props.state.title} onChange={this.changeTitle} />
             <label>Dataset:</label>
             <div className="data-table-wrapper">
                 {this.createTable()}
             </div>
-            <button onClick={this.props.actions.addRowToTable}>Add row</button>
-            <button onClick={this.props.actions.addColumnToTable}>Add column</button>
+            {this.props.state.canAddRows && <button onClick={this.props.actions.addRowToTable}>Add row</button>}
+            {this.props.state.canAddColumns && <button onClick={this.props.actions.addColumnToTable}>Add column</button>}
         </div>);
     }
 }

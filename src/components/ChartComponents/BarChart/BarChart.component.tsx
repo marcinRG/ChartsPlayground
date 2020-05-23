@@ -4,7 +4,7 @@ import './BarChart.component.scss';
 
 import {transformInputData} from '../../../utils/data.utils'
 import {
-    createBarChart,
+    createBarChart, createChart,
 } from '../../../utils/3d.utils';
 
 export class BarChartComponent extends Component<any, any> {
@@ -16,13 +16,13 @@ export class BarChartComponent extends Component<any, any> {
     }
 
     componentDidMount(): void {
-        this.svgRef.current = createBarChart(this.svgRef.current,
-            transformInputData(this.props.values).data, this.props.chartProperties);
+        this.svgRef.current = createChart(this.svgRef.current,
+            transformInputData(this.props.values), this.props.chartProperties, createBarChart);
     }
 
     render() {
-        this.svgRef.current = createBarChart(this.svgRef.current,
-            transformInputData(this.props.values).data, this.props.chartProperties);
+        this.svgRef.current = createChart(this.svgRef.current,
+            transformInputData(this.props.values), this.props.chartProperties, createBarChart);
         return (
             <div className="chart-component">
                 <label className="chart-title">{this.props.title}</label>

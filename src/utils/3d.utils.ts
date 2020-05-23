@@ -1,5 +1,6 @@
 import {IChartProperties} from '../interfaces/IChartProperties';
 import * as d3 from 'd3';
+import {dataStatus, IStatusData} from './data.utils';
 
 export function getChartWidth(chartProperties: IChartProperties): number {
     return chartProperties.xMax - (chartProperties.margins.left + chartProperties.margins.right);
@@ -135,18 +136,21 @@ export function appendArea(svgElement: any, scaleX: any, scaleY: any, chartPrope
 
 export function appendPie(svgElement: any, colorScale: any, arc: any, chartProperties: IChartProperties, data: any) {
     let chart = svgElement.append('g');
-    chart = translateElement(chart, chartProperties.xMax / 2, chartProperties.yMax/2);
+    chart = translateElement(chart, chartProperties.xMax / 2, chartProperties.yMax / 2);
     //pie slides
     chart.selectAll().data(data).enter().append('path').attr('d', arc).attr('fill', (d: any) => {
         return colorScale(d.data.y);
-    }).attr('stroke','white').attr('stroke-width','1');
+    }).attr('stroke', 'white').attr('stroke-width', '1');
     //text
-    chart.selectAll().data(data).enter().append('text').text((d: any)=>{
-            return d.data.x})
-        .attr('transform', (d: any) => { return 'translate(' + arc.centroid(d) + ')';})
+    chart.selectAll().data(data).enter().append('text').text((d: any) => {
+        return d.data.x
+    })
+        .attr('transform', (d: any) => {
+            return 'translate(' + arc.centroid(d) + ')';
+        })
         .style('text-anchor', 'middle')
         .style('font-size', 10)
-        .style('font-weight','bold');
+        .style('font-weight', 'bold');
 }
 
 export function createBarChart(svgElement: any, data: any, settings: any) {
@@ -185,9 +189,38 @@ export function createLineChart(svgElement: any, data: any, settings: any) {
     return svgElement;
 }
 
-export function createPieChart(svgElement: any, data: any, settings: any) {
+function createErrorMsg(svgElement: any, data: IStatusData, settings: IChartProperties) {
+    const svg = d3.select(svgElement);
+    const errorGroup = svg.append('g');
+    const errorSign = errorGroup.append('text');
+    errorSign.text('\u26A0').attr('x', 210).attr('y', 230).attr('class', 'svg-text-warning');
+    const errorTxt = errorGroup.append('text');
+    errorTxt.text('Error !!!').attr('x', 230).attr('y', 230).attr('class', 'svg-text-warning');
+    const txtMsg = errorGroup.append('text');
+    txtMsg.attr('x', 20)
+        .attr('y', 250)
+        .attr('class', 'svg-text-warning-msg')
+        .attr('textLength', 440)
+        .attr('lengthAdjust', 'spacing');
+    txtMsg.text(data.errorMsg);
+    return svgElement;
+}
+
+export function createChart(svgElement: any, data: IStatusData, settings: IChartProperties, chartFunction: (svgElement: any, data: any[], settings: IChartProperties) => any) {
     const svg = d3.select(svgElement);
     svg.selectAll('g').remove();
+
+    if (data.status === dataStatus.OK) {
+        svgElement = chartFunction(svgElement,data.data,settings);
+    }
+    if (data.status === dataStatus.ERROR) {
+        svgElement = createErrorMsg(svgElement, data, settings);
+    }
+    return svgElement;
+}
+
+export function createPieChart(svgElement: any, data: any[], settings: IChartProperties) {
+    const svg = d3.select(svgElement);
     const yExtent = getExtent(data, 'y');
     let color = d3.scaleLinear<string, number>().domain(yExtent)
         .range(['pink', 'red']);

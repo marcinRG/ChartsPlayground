@@ -1,7 +1,28 @@
 import {DataContext} from './data.context';
 import {DataProviderHOC} from './Data.provider.hoc';
 
-const initDataBarChart = {
+export interface IChartProperties {
+    margins: {
+        left: number;
+        right: number;
+        top: number;
+        bottom: number;
+    }
+    xMax: number;
+    yMax: number;
+}
+
+export interface  IChartData {
+    title: string;
+    values: Array<Array<any>>;
+    chartProperties: IChartProperties;
+    selectedRow: number;
+    selectedColumn: number
+    canAddRows: boolean
+    canAddColumns: boolean;
+}
+
+const initDataBarChart: IChartData = {
     title: 'Table bar chart',
     values: [
         [1, 2],
@@ -27,9 +48,11 @@ const initDataBarChart = {
         yMax: 500,
     },
     selectedRow: 0,
-    selectedColumn: 0
+    selectedColumn: 0,
+    canAddRows: true,
+    canAddColumns: false
 };
-const initDataLineChart = {
+const initDataLineChart: IChartData = {
     title: 'Table line chart',
     values: [
         [3, 10],
@@ -54,9 +77,11 @@ const initDataLineChart = {
         yMax: 500,
     },
     selectedRow: 0,
-    selectedColumn: 0
+    selectedColumn: 0,
+    canAddRows: true,
+    canAddColumns: false
 };
-const initDataPieChart = {
+const initDataPieChart:IChartData = {
     title: 'Table pie chart',
     values: [
         [2, 25],
@@ -80,9 +105,11 @@ const initDataPieChart = {
         yMax: 500,
     },
     selectedRow: 0,
-    selectedColumn: 0
+    selectedColumn: 0,
+    canAddRows: true,
+    canAddColumns: false
 };
-const initDataPointChart = {
+const initDataPointChart: IChartData = {
     title: 'Table point chart',
     values: [
         [1, 2],
@@ -108,9 +135,11 @@ const initDataPointChart = {
         yMax: 500,
     },
     selectedRow: 0,
-    selectedColumn: 0
+    selectedColumn: 0,
+    canAddRows: true,
+    canAddColumns: false
 };
-const initDataAreaChart = {
+const initDataAreaChart: IChartData = {
     title: 'Table Area chart',
     values: [[3, 10], [2, 70], [6, 75], [8, 100], [1, 47], [4, 55], [5, 20], [7, 82]],
     chartProperties: {
@@ -124,7 +153,9 @@ const initDataAreaChart = {
         yMax: 500,
     },
     selectedRow: 0,
-    selectedColumn: 0
+    selectedColumn: 0,
+    canAddRows: true,
+    canAddColumns: false
 };
 
 export const DataProviderBarChart = DataProviderHOC(DataContext, initDataBarChart);
